@@ -343,6 +343,12 @@ class ControllerExtensionModuleOcmegamenu extends Controller
                         }
                     }
 
+                    if(isset($top_item['category_id']) && $top_item['sub_menu_content_type'] == 'category') {
+                        $top_link = $this->url->link('product/category', 'path=' . $top_item['category_id']);
+                    } else {
+                        $top_link = $top_item['link'];
+                    }
+
                     $data['items'][] = array(
                         'id'    => $top_item['menu_item_id'],
                         'sub_items' => $sub_items_lv2,
@@ -351,7 +357,7 @@ class ControllerExtensionModuleOcmegamenu extends Controller
                         'has_link' => $top_item_has_link,
                         'has_child' => $top_item_has_child,
                         'category_id' => $top_item['category_id'],
-                        'link' => $top_item['link'],
+                        'link' => $top_link,
                         'icon' => $icon,
                         'item_align' => $top_item['item_align'],
                         'sub_menu_type' => $top_item['sub_menu_type'],
