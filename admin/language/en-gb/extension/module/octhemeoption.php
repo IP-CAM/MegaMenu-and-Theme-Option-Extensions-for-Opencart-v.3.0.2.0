@@ -16,6 +16,7 @@ $_['tab_a']                = '&lt; a &gt; Tag';
 $_['tab_header']           = 'Header Tag (h1,h2,..,h6)';
 $_['tab_body']             = 'Body';
 $_['tab_backup']           = 'Theme Database';
+$_['tab_product']          = 'Product Configuration';
 
 // Entry
 $_['entry_status']         = 'Enable Stylesheet Configuration';
@@ -35,6 +36,8 @@ $_['entry_bg_color']       = 'Background Color';
 $_['entry_bg_hover_color'] = 'Background Color when Hover';
 $_['entry_loader_image']   = 'Ajax Loader Image';
 $_['entry_theme_database'] = 'Choose Theme Restore';
+$_['entry_use_swatches']   = 'Use Color Swatches';
+$_['entry_use_zoom']       = 'Use Image Zoom';
 
 //Error
 $_['error_permission']     = 'Warning: You do not have permission to modify OC Theme Configuration module!';

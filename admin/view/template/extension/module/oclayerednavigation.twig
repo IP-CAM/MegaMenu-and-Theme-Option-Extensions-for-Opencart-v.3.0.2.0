@@ -3,7 +3,7 @@
     <div class="page-header">
         <div class="container-fluid">
             <div class="pull-right">
-                <button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+                <button type="submit" form="form-oclayerednavigation" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
                 <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
             <h1>{{ heading_title }}</h1>
             <ul class="breadcrumb">
@@ -28,8 +28,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
                         <div class="col-sm-10">
-                            <select name="module_occolorswatches_status" id="input-status" class="form-control">
-                                {% if module_occolorswatches_status %}
+                            <select name="module_oclayerednavigation_status" id="input-status" class="form-control">
+                                {% if module_oclayerednavigation_status %}
                                     <option value="1" selected="selected">{{ text_enabled }}</option>
                                     <option value="0">{{ text_disabled }}</option>
                                 {% else %}
@@ -40,21 +40,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-width">{{ entry_width }}</label>
+                        <label class="col-sm-2 control-label" for="input-image">{{ entry_image }}</label>
                         <div class="col-sm-10">
-                            <input type="text" name="module_occolorswatches_width" value="{{ module_occolorswatches_width }}" placeholder="{{ entry_width }}" id="input-width" class="form-control" />
-                            {% if error_width %}
-                                <div class="text-danger">{{ error_width }}</div>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-height">{{ entry_height }}</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="module_occolorswatches_height" value="{{ module_occolorswatches_height }}" placeholder="{{ entry_height }}" id="input-height" class="form-control" />
-                            {% if error_height %}
-                                <div class="text-danger">{{ error_height }}</div>
-                            {% endif %}
+                            <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="{{ thumb }}" alt="" title=""  /></a>
+                            <input type="hidden" name="module_oclayerednavigation_loader_img" value="{{ module_oclayerednavigation_loader_img }}" id="input-image" />
                         </div>
                     </div>
                 </form>
