@@ -8,7 +8,6 @@ class ModelExtensionModuleOcthemeoption extends Model
         $this->createCMSTable();
         $this->createSlideShowTable();
         $this->createTestimonialTable();
-        $this->createColorSwatches();
     }
 
     public function createBlogTable() {
@@ -125,10 +124,5 @@ class ModelExtensionModuleOcthemeoption extends Model
     public function createRotatorImage() {
         $this->load->model('catalog/ocproductrotator');
         $this->model_catalog_ocproductrotator->installProductRotator();
-    }
-    
-    public function createColorSwatches() {
-        $this->load->model('catalog/occolorswatches');
-        $this->model_catalog_occolorswatches->installSwatchesAttribute();
     }
 }

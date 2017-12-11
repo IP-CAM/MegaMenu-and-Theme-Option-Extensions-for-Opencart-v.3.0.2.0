@@ -158,10 +158,82 @@ class ControllerExtensionModuleOcthemeoption extends Controller
             $data['module_octhemeoption_use_swatches'] = $this->config->get('module_octhemeoption_use_swatches');
         }
 
+        if (isset($this->request->post['module_octhemeoption_swatches_width'])) {
+            $data['module_octhemeoption_swatches_width'] = $this->request->post['module_octhemeoption_swatches_width'];
+        } else {
+            $data['module_octhemeoption_swatches_width'] = $this->config->get('module_octhemeoption_swatches_width');
+        }
+
+        if (isset($this->request->post['module_octhemeoption_swatches_height'])) {
+            $data['module_octhemeoption_swatches_height'] = $this->request->post['module_octhemeoption_swatches_height'];
+        } else {
+            $data['module_octhemeoption_swatches_height'] = $this->config->get('module_octhemeoption_swatches_height');
+        }
+
         if (isset($this->request->post['module_octhemeoption_use_zoom'])) {
             $data['module_octhemeoption_use_zoom'] = $this->request->post['module_octhemeoption_use_zoom'];
         } else {
             $data['module_octhemeoption_use_zoom'] = $this->config->get('module_octhemeoption_use_zoom');
+        }
+
+        if (isset($this->request->post['module_octhemeoption_zoom_position'])) {
+            $data['module_octhemeoption_zoom_position'] = $this->request->post['module_octhemeoption_zoom_position'];
+        } else {
+            $data['module_octhemeoption_zoom_position'] = $this->config->get('module_octhemeoption_zoom_position');
+        }
+
+        if (isset($this->request->post['module_octhemeoption_zoom_space'])) {
+            $data['module_octhemeoption_zoom_space'] = $this->request->post['module_octhemeoption_zoom_space'];
+        } else {
+            $data['module_octhemeoption_zoom_space'] = $this->config->get('module_octhemeoption_zoom_space');
+        }
+
+        if (isset($this->request->post['module_octhemeoption_zoom_background_status'])) {
+            $data['module_octhemeoption_zoom_background_status'] = $this->request->post['module_octhemeoption_zoom_background_status'];
+        } else {
+            $data['module_octhemeoption_zoom_background_status'] = $this->config->get('module_octhemeoption_zoom_background_status');
+        }
+
+        if (isset($this->request->post['module_octhemeoption_zoom_background_color'])) {
+            $data['module_octhemeoption_zoom_background_color'] = $this->request->post['module_octhemeoption_zoom_background_color'];
+        } else {
+            $data['module_octhemeoption_zoom_background_color'] = $this->config->get('module_octhemeoption_zoom_background_color');
+        }
+
+        if (isset($this->request->post['module_octhemeoption_zoom_background_opacity'])) {
+            $data['module_octhemeoption_zoom_background_opacity'] = $this->request->post['module_octhemeoption_zoom_background_opacity'];
+        } else {
+            $data['module_octhemeoption_zoom_background_opacity'] = $this->config->get('module_octhemeoption_zoom_background_opacity');
+        }
+
+        if (isset($this->request->post['module_octhemeoption_zoom_title'])) {
+            $data['module_octhemeoption_zoom_title'] = $this->request->post['module_octhemeoption_zoom_title'];
+        } else {
+            $data['module_octhemeoption_zoom_title'] = $this->config->get('module_octhemeoption_zoom_title');
+        }
+
+        if (isset($this->request->post['module_octhemeoption_category_view'])) {
+            $data['module_octhemeoption_category_view'] = $this->request->post['module_octhemeoption_category_view'];
+        } else {
+            $data['module_octhemeoption_category_view'] = $this->config->get('module_octhemeoption_category_view');
+        }
+
+        if (isset($this->request->post['module_octhemeoption_grid_columns'])) {
+            $data['module_octhemeoption_grid_columns'] = $this->request->post['module_octhemeoption_grid_columns'];
+        } else {
+            $data['module_octhemeoption_grid_columns'] = $this->config->get('module_octhemeoption_grid_columns');
+        }
+
+        if (isset($this->request->post['module_octhemeoption_use_layered'])) {
+            $data['module_octhemeoption_use_layered'] = $this->request->post['module_octhemeoption_use_layered'];
+        } else {
+            $data['module_octhemeoption_use_layered'] = $this->config->get('module_octhemeoption_use_layered');
+        }
+
+        if (isset($this->request->post['module_octhemeoption_image_effect'])) {
+            $data['module_octhemeoption_image_effect'] = $this->request->post['module_octhemeoption_image_effect'];
+        } else {
+            $data['module_octhemeoption_image_effect'] = $this->config->get('module_octhemeoption_image_effect');
         }
 
         $this->load->model('tool/image');
