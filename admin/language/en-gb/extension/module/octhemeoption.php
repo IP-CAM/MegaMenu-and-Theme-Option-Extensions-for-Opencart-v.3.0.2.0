@@ -49,6 +49,7 @@ $_['entry_bg_hover_color'] = 'Background Color when Hover';
 $_['entry_loader_image']   = 'Ajax Loader Image';
 $_['entry_theme_database'] = 'Choose Theme Restore';
 $_['entry_use_swatches']   = 'Use Color Swatches';
+$_['entry_color_option']   = 'Use Option for Swatches';
 $_['entry_icon_swatches']  = 'Icon Swatches (W x H)';
 $_['entry_use_zoom']       = 'Use Image Zoom';
 $_['entry_zoom_position']  = 'Zoom Position';

@@ -262,56 +262,88 @@
                             {% for option in options %}
                                 {% if use_swatches %}
                                     {% if option.type == 'select' %}
-                                        <div class="form-group{% if option.required %} required {% endif %}">
-                                            <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
-                                            <ul class="ul-swatches-colors" data-product-option="{{ option.product_option_id }}" data-type="select">
-                                                {% for option_value in option.product_option_value %}
-                                                <li class="swatches-options">
-                                                    <a href="javascript:void(0);" onclick="swatches.changeOption($(this));" title="{{ option_value.name }} {% if option_value.price %}({{ option_value.price_prefix }}{{ option_value.price }}){% endif %}"
-                                                        style="{% if option_value.image %} width: {{ icon_swatches_width }}px; height: {{ icon_swatches_height }}px;
-                                                        background-image: url('{{ option_value.image }}') {% endif %}"
-                                                        data-product-option-value-id="{{ option_value.product_option_value_id }}">{% if not option_value.image %} {{ option_value.name }} {% endif %}</a>
-                                                </li>
-                                                {% endfor %}
-                                                <li class="swatches-info"></li>
-                                            </ul>
-                                            <select name="option[{{ option.product_option_id }}]" id="input-option{{ option.product_option_id }}" class="form-control option-swatches">
-                                                <option value="0">{{ text_select }}</option>
-                                                {% for option_value in option.product_option_value %}
-                                                    <option value="{{ option_value.product_option_value_id }}">{{ option_value.name }}
-                                                        {% if option_value.price %}
-                                                            ({{ option_value.price_prefix }}{{ option_value.price }})
-                                                        {% endif %} </option>
-                                                {% endfor %}
-                                            </select>
-                                        </div>
-                                    {% endif %}
-                                    {% if option.type == 'radio' %}
-                                        <div class="form-group{% if option.required %} required {% endif %}">
-                                            <label class="control-label">{{ option.name }}</label>
-                                            <ul class="ul-swatches-colors" data-product-option="{{ option.product_option_id }}" data-type="radio">
-                                                {% for option_value in option.product_option_value %}
+                                        {% if option.option_id == swatches_option %}
+                                            <div class="form-group{% if option.required %} required {% endif %}">
+                                                <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+                                                <ul class="ul-swatches-colors" data-product-option="{{ option.product_option_id }}" data-type="select">
+                                                    {% for option_value in option.product_option_value %}
                                                     <li class="swatches-options">
                                                         <a href="javascript:void(0);" onclick="swatches.changeOption($(this));" title="{{ option_value.name }} {% if option_value.price %}({{ option_value.price_prefix }}{{ option_value.price }}){% endif %}"
-                                                           style="{% if option_value.image %} width: {{ icon_swatches_width }}px; height: {{ icon_swatches_height }}px;
-                                                        background-image: url('{{ option_value.image }}') {% endif %}"
-                                                           data-product-option-value-id="{{ option_value.product_option_value_id }}">{% if not option_value.image %} {{ option_value.name }} {% endif %}</a>
+                                                            style="{% if option_value.image %} width: {{ icon_swatches_width }}px; height: {{ icon_swatches_height }}px;
+                                                            background-image: url('{{ option_value.image }}') {% endif %}"
+                                                            data-product-option-value-id="{{ option_value.product_option_value_id }}">{% if not option_value.image %} {{ option_value.name }} {% endif %}</a>
                                                     </li>
-                                                {% endfor %}
-                                                <li class="swatches-info"></li>
-                                            </ul>
-                                            <div class="option-swatches" id="input-option{{ option.product_option_id }}"> {% for option_value in option.product_option_value %}
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" class="radio-option-value" id="radio-option-value-{{ option_value.product_option_value_id }}" name="option[{{ option.product_option_id }}]" value="{{ option_value.product_option_value_id }}" />
-                                                            {% if option_value.image %} <img src="{{ option_value.image }}" alt="{{ option_value.name }} {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}" class="img-thumbnail" /> {% endif %}
-                                                            {{ option_value.name }}
+                                                    {% endfor %}
+                                                    <li class="swatches-info"></li>
+                                                </ul>
+                                                <select name="option[{{ option.product_option_id }}]" id="input-option{{ option.product_option_id }}" class="form-control option-swatches">
+                                                    <option value="0">{{ text_select }}</option>
+                                                    {% for option_value in option.product_option_value %}
+                                                        <option value="{{ option_value.product_option_value_id }}">{{ option_value.name }}
                                                             {% if option_value.price %}
                                                                 ({{ option_value.price_prefix }}{{ option_value.price }})
-                                                            {% endif %} </label>
-                                                    </div>
-                                                {% endfor %} </div>
-                                        </div>
+                                                            {% endif %} </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        {% else %}
+                                            <div class="form-group{% if option.required %} required {% endif %}">
+                                                <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+                                                <select name="option[{{ option.product_option_id }}]" id="input-option{{ option.product_option_id }}" class="form-control">
+                                                    <option value="">{{ text_select }}</option>
+                                                    {% for option_value in option.product_option_value %}
+                                                        <option value="{{ option_value.product_option_value_id }}">{{ option_value.name }}
+                                                            {% if option_value.price %}
+                                                                ({{ option_value.price_prefix }}{{ option_value.price }})
+                                                            {% endif %} </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                    {% if option.type == 'radio' %}
+                                        {% if option.option_id == swatches_option %}
+                                            <div class="form-group{% if option.required %} required {% endif %}">
+                                                <label class="control-label">{{ option.name }}</label>
+                                                <ul class="ul-swatches-colors" data-product-option="{{ option.product_option_id }}" data-type="radio">
+                                                    {% for option_value in option.product_option_value %}
+                                                        <li class="swatches-options">
+                                                            <a href="javascript:void(0);" onclick="swatches.changeOption($(this));" title="{{ option_value.name }} {% if option_value.price %}({{ option_value.price_prefix }}{{ option_value.price }}){% endif %}"
+                                                               style="{% if option_value.image %} width: {{ icon_swatches_width }}px; height: {{ icon_swatches_height }}px;
+                                                        background-image: url('{{ option_value.image }}') {% endif %}"
+                                                               data-product-option-value-id="{{ option_value.product_option_value_id }}">{% if not option_value.image %} {{ option_value.name }} {% endif %}</a>
+                                                        </li>
+                                                    {% endfor %}
+                                                    <li class="swatches-info"></li>
+                                                </ul>
+                                                <div class="option-swatches" id="input-option{{ option.product_option_id }}"> {% for option_value in option.product_option_value %}
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" class="radio-option-value" id="radio-option-value-{{ option_value.product_option_value_id }}" name="option[{{ option.product_option_id }}]" value="{{ option_value.product_option_value_id }}" />
+                                                                {% if option_value.image %} <img src="{{ option_value.image }}" alt="{{ option_value.name }} {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}" class="img-thumbnail" /> {% endif %}
+                                                                {{ option_value.name }}
+                                                                {% if option_value.price %}
+                                                                    ({{ option_value.price_prefix }}{{ option_value.price }})
+                                                                {% endif %} </label>
+                                                        </div>
+                                                    {% endfor %} </div>
+                                            </div>
+                                        {% else %}
+                                            <div class="form-group{% if option.required %} required {% endif %}">
+                                                <label class="control-label">{{ option.name }}</label>
+                                                <div id="input-option{{ option.product_option_id }}"> {% for option_value in option.product_option_value %}
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="option[{{ option.product_option_id }}]" value="{{ option_value.product_option_value_id }}" />
+                                                                {% if option_value.image %} <img src="{{ option_value.image }}" alt="{{ option_value.name }} {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}" class="img-thumbnail" /> {% endif %}
+                                                                {{ option_value.name }}
+                                                                {% if option_value.price %}
+                                                                    ({{ option_value.price_prefix }}{{ option_value.price }})
+                                                                {% endif %} </label>
+                                                        </div>
+                                                    {% endfor %} </div>
+                                            </div>
+                                        {% endif %}
                                     {% endif %}
                                 {% else %}
                                     {% if option.type == 'select' %}

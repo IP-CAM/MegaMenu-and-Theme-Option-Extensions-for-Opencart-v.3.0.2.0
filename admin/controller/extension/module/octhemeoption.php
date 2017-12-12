@@ -58,6 +58,20 @@ class ControllerExtensionModuleOcthemeoption extends Controller
             );
         }
 
+        $this->load->model('catalog/option');
+
+        $data['options'] = array();
+
+        $results = $this->model_catalog_option->getOptions();
+
+        foreach ($results as $result) {
+            $data['options'][] = array(
+                'option_id'  => $result['option_id'],
+                'type'       => $result['type'],
+                'name'       => $result['name']
+            );
+        }
+
         if(isset($this->session->data['success'])) {
             $data['success'] = $this->session->data['success'];
 
@@ -168,6 +182,12 @@ class ControllerExtensionModuleOcthemeoption extends Controller
             $data['module_octhemeoption_swatches_height'] = $this->request->post['module_octhemeoption_swatches_height'];
         } else {
             $data['module_octhemeoption_swatches_height'] = $this->config->get('module_octhemeoption_swatches_height');
+        }
+
+        if (isset($this->request->post['module_octhemeoption_swatches_option'])) {
+            $data['module_octhemeoption_swatches_option'] = $this->request->post['module_octhemeoption_swatches_option'];
+        } else {
+            $data['module_octhemeoption_swatches_option'] = $this->config->get('module_octhemeoption_swatches_option');
         }
 
         if (isset($this->request->post['module_octhemeoption_use_zoom'])) {

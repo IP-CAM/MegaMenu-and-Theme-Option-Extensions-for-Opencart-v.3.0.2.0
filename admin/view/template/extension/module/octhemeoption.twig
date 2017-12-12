@@ -328,6 +328,18 @@
                                             <input type="text" value="{{ module_octhemeoption_swatches_height[store.store_id] }}" name="module_octhemeoption_swatches_height[{{ store.store_id }}]" placeholder="{{ entry_height }}" class="form-control" />
                                         </div>
                                     </div>
+                                    <div class="form-group swatches-settings swatches-settings-{{ store.store_id }}">
+                                        <label class="col-sm-2 control-label" for="input-color-option-{{ store.store_id }}">{{ entry_color_option }}</label>
+                                        <div class="col-sm-6">
+                                            <select name="module_octhemeoption_swatches_option[{{ store.store_id }}]" id="input-color-option-{{ store.store_id }}" class="form-control">
+                                                {% for option in options %}
+                                                    {% if option.type == 'select' or option.type == 'radio' %}
+                                                    <option value="{{ option.option_id }}" {% if module_octhemeoption_swatches_option[store.store_id] == option.option_id %} selected="selected" {% endif %}>{{ option.name }}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="input-zoom-{{ store.store_id }}">{{ entry_use_zoom }}</label>
                                         <div class="col-sm-6">
