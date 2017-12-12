@@ -1,0 +1,21 @@
+#quickview-bg-block {  display: none; background-color : rgba(0,0,0,0.35); top: 0; left: 0; right: 0; bottom: 0;  margin: auto; position: fixed; z-index: 10;  }
+
+.quickview-load-img {  display: none; position: fixed; top: 50%; left: 0; right: 0; bottom: 0; text-align: center; z-index: 15; margin: auto;}
+
+.a-qv-close {
+    position: fixed;
+    z-index: 20;
+}
+.qv-button-container { position: relative }
+#quickview-content {
+    position: fixed;
+    background-color: #FFFFFF;
+    border: solid 2px #000000;
+    display: none;
+    z-index: 25;
+    width: 92%;
+    height: 86%;
+    top: 7%;
+    left: 4%;
+    overflow: auto !important;
+}

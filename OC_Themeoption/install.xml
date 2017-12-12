@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <code>oc_theme_option</code>
+    <name>OC Theme Option</name>
+    <version>3.x</version>
+    <author>Plaza Theme</author>
+
+    <!-- Menu Left in Admin -->
+    <file path="admin/controller/common/column_left.php">
+        <operation>
+            <search ><![CDATA[$sale = array();]]></search>
+            <add position="before"><![CDATA[
+            // OC Menu Items
+            $this->load->language('ocadminmenu/ocadminmenu');
+
+            $ocadmin_menu = array();
+
+            if($this->user->hasPermission('access', 'extension/module/octhemeoption')) {
+                $ocadmin_menu[] = array(
+                    'name'     => $this->language->get('text_theme_config'),
+                    'href'     => $this->url->link('extension/module/octhemeoption', 'user_token=' . $this->session->data['user_token'], true),
+                    'children' => array()
+                );
+            }
+
+            if($this->user->hasPermission('access', 'catalog/occategorythumbnail')) {
+                $ocadmin_menu[] = array(
+                    'name'     => $this->language->get('text_category_thumbnail'),
+                    'href'     => $this->url->link('catalog/occategorythumbnail', 'user_token=' . $this->session->data['user_token'], true),
+                    'children' => array()
+                );
+            }
+
+            if($this->user->hasPermission('access', 'extension/module/ocmegamenu')) {
+                $ocadmin_menu[] = array(
+                    'name'     => $this->language->get('text_advance_menu'),
+                    'href'     => $this->url->link('extension/module/ocmegamenu/menuList', 'user_token=' . $this->session->data['user_token'], true),
+                    'children' => array()
+                );
+            }
+
+            // Blog
+            $blog = array();
+
+            if ($this->user->hasPermission('access', 'blog/article')) {
+                $blog[] = array(
+                    'name'     => $this->language->get('text_article'),
+                    'href'     => $this->url->link('blog/article', 'user_token=' . $this->session->data['user_token'], true),
+                    'children' => array()
+                );
+            }
+
+            if ($this->user->hasPermission('access', 'blog/articlelist')) {
+                $blog[] = array(
+                    'name'     => $this->language->get('text_article_list'),
+                    'href'     => $this->url->link('blog/articlelist', 'user_token=' . $this->session->data['user_token'], true),
+                    'children' => array()
+                );
+            }
+
+            if ($this->user->hasPermission('access', 'blog/config')) {
+                $blog[] = array(
+                    'name'     => $this->language->get('text_blog_config'),
+                    'href'     => $this->url->link('blog/config', 'user_token=' . $this->session->data['user_token'], true),
+                    'children' => array()
+                );
+            }
+
+            if($blog) {
+                $ocadmin_menu[] = array(
+                    'name'      => $this->language->get('text_blog'),
+                    'href'      => '',
+                    'children'  => $blog
+                );
+            }
+
+            if($this->user->hasPermission('access', 'extension/module/occmsblock')) {
+                $ocadmin_menu[] = array(
+                    'name'     => $this->language->get('text_cms_block'),
+                    'href'     => $this->url->link('extension/module/occmsblock/cmslist', 'user_token=' . $this->session->data['user_token'], true),
+                    'children' => array()
+                );
+            }
+
+            if($this->user->hasPermission('access', 'extension/module/ocslideshow')) {
+                $ocadmin_menu[] = array(
+                    'name'     => $this->language->get('text_slideshow'),
+                    'href'     => $this->url->link('extension/module/ocslideshow/form', 'user_token=' . $this->session->data['user_token'], true),
+                    'children' => array()
+                );
+            }
+
+            if($this->user->hasPermission('access', 'catalog/octestimonial')) {
+                $ocadmin_menu[] = array(
+                    'name'     => $this->language->get('text_testimonial'),
+                    'href'     => $this->url->link('catalog/octestimonial', 'user_token=' . $this->session->data['user_token'], true),
+                    'children' => array()
+                );
+            }
+            
+            $data['menus'][] = array(
+                'id'       => 'menu-panel',
+                'icon'     => 'fa-empire',
+                'name'     => $this->language->get('text_theme_menu'),
+                'href'     => '',
+                'children' => $ocadmin_menu
+            );
+            ]]></add>
+        </operation>
+    </file>
+
+    <!-- PRODUCT ROTATOR IMAGE & COLOR SWATCHES -->
+    <file path="admin/controller/catalog/product.php">
+        <operation>
+            <search ><![CDATA[public function index() {]]></search>
+            <add position="after"><![CDATA[
+        $this->load->model('catalog/ocproductrotator');
+        $this->model_catalog_ocproductrotator->installProductRotator();
+            ]]></add>
+        </operation>
+        <operation>
+            <search ><![CDATA[$this->load->language('catalog/product');]]></search>
+            <add position="before"><![CDATA[
+                $this->load->language('extension/module/ocproductrotator');
+                $this->load->language('extension/module/octhemeoption');
+            ]]></add>
+        </operation>
+        <operation>
+            <search ><![CDATA['sort_order' => $product_image['sort_order']]]></search>
+            <add position="before"><![CDATA[
+                'is_rotator' => $product_image['is_rotator'],
+                'product_option_value_id' => $product_image['product_option_value_id'],
+            ]]></add>
+        </operation>
+    </file>
+
+    <file path="admin/model/catalog/product.php">
+        <operation>
+            <search><![CDATA[$this->db->query("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape($product_image['image']) . "', sort_order = '" . (int)$product_image['sort_order'] . "'");]]></search>
+            <add position="replace">
+                <![CDATA[
+                    /* Product Rotator */
+                    $this->db->query("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape($product_image['image']) . "', sort_order = '" . (int)$product_image['sort_order'] . "', is_rotator = '" . (int)$product_image['is_rotator'] . "', product_option_value_id = '" . (int)$product_image['product_option_value_id'] . "'");
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/catalog/product_form.twig">
+        <operation>
+            <search><![CDATA[<td class="text-right">{{ entry_sort_order }}</td>]]></search>
+            <add position="after">
+                <![CDATA[
+                    <td class="text-center">{{ entry_option }}</td>
+                    <td class="text-center">{{ entry_is_rotator }}</td>
+                ]]>
+            </add>
+        </operation>
+        <operation>
+            <search><![CDATA[<td class="text-left"><button type="button" onclick="$('#image-row{{ image_row }}').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>]]></search>
+            <add position="before">
+                <![CDATA[
+                    <!-- Swatches Options -->
+                    <td class="text-center">
+                      <select class="form-control image-opt" id="product-image-option-{{ image_row }}" data-row="{{ image_row }}" style="margin-bottom: 10px;">
+                        <option value="0">{{ text_choose_option }}</option>
+                        {% for product_option in product_options %}
+                          {% if product_option.type == "select" or product_option.type == "radio" %}
+                            <option value="{{ product_option.product_option_id }}">{{ product_option.name }}</option>
+                          {% endif %}
+                        {% endfor %}
+                      </select>
+                      {% for product_option in product_options %}
+                        {% if product_option.type == "select" or product_option.type == "radio" %}
+                        <select class="form-control image-opt-value" id="product-image-option-{{ image_row }}-{{ product_option.product_option_id }}" data-row="{{ image_row }}" data-type="{{ product_option.product_option_id }}">
+                          <option value="0">{{ text_choose_value }}</option>
+                          {% for po_value in product_option.product_option_value %}
+                            {% if option_values[product_option.option_id] %}
+                              {% for option_value in option_values[product_option.option_id] %}
+                                {% if option_value.option_value_id == po_value.option_value_id %}
+                                  <option value="{{ po_value.product_option_value_id }}" {% if product_image.product_option_value_id == po_value.product_option_value_id %} selected="selected" {% endif %}>{{ option_value.name }}</option>
+                                {% endif %}
+                              {% endfor %}
+                            {% endif %}
+                          {% endfor %}
+                        </select>
+                        {% endif %}
+                      {% endfor %}
+                    </td>
+
+                    <!-- Rotator Image -->
+                    <td class="text-center">
+                      <select name="product_image[{{ image_row }}][is_rotator]" class="form-control rotator-select">
+                        {% if product_image.is_rotator and (product_image.is_rotator == 1) %}
+                        <option value="1" selected="selected">Yes</option>
+                        <option value="0">No</option>
+                        {% else %}
+                        <option value="1">Yes</option>
+                        <option value="0" selected="selected">No</option>
+                        {% endif %}
+                      </select>
+                    </td>
+                    <!-- End -->
+                ]]>
+            </add>
+        </operation>
+        <operation>
+            <search><![CDATA[function addImage() {]]></search>
+            <add position="before">
+                <![CDATA[
+                    $('#tab-image tfoot td:first').attr('colspan', 4);
+
+                    // Swatches Options
+                    $('.image-opt-value').hide();
+                    $('.image-opt-value').each(function () {
+                      var row = $(this).data('row');
+                      $(this).find('option').each(function () {
+                        if($(this).attr("selected") == 'selected') {
+                          var option_id = $(this).closest('.image-opt-value').data('type');
+                          $('#product-image-option-' + row).find("option[value='" + option_id + "']").attr('selected', 'selected');
+                          $(this).closest('.image-opt-value').attr('name', 'product_image[' + row + '][product_option_value_id]').show();
+                        }
+                      });
+                    });
+
+                    $('.image-opt').change(function () {
+                      var row = $(this).data('row');
+                      var id_select = $(this).attr('id');
+                      var product_option_id = $(this).val();
+                      $('#image-row' + row).find('.image-opt-value').removeAttr('name').hide();
+                      $('#' + id_select + "-" + product_option_id).attr('name', 'product_image[' + row + '][product_option_value_id]').show();
+                    });
+
+                    // Product Rotator
+                    $('.rotator-select').change(function() {
+                      var value = $(this).val();
+                      if(value == 1) {
+                        $('.rotator-select').val(0);
+                        $(this).val(1);
+                      }
+                    });
+                ]]>
+            </add>
+        </operation>
+        <operation>
+            <search><![CDATA[$('#images tbody').append(html);]]></search>
+            <add position="after">
+                <![CDATA[
+                    // Swatches Options
+                    $('.image-opt').change(function () {
+                      var row = $(this).data('row');
+                      var id_select = $(this).attr('id');
+                      var product_option_id = $(this).val();
+                      $('#image-row' + row).find('.image-opt-value').removeAttr('name').hide();
+                      $('#' + id_select + "-" + product_option_id).attr('name', 'product_image[' + row + '][product_option_value_id]').show();
+                    });
+
+                    //Product Rotator
+                    $('.rotator-select').change(function() {
+                      var value = $(this).val();
+                      if(value == 1) {
+                        $('.rotator-select').val(0);
+                        $(this).val(1);
+                      }
+                    });
+                    //End
+                ]]>
+            </add>
+        </operation>
+        <operation>
+            <search><![CDATA[html += '  <td class="text-left"><button type="button" onclick="$(\'#image-row' + image_row  + '\').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';]]></search>
+            <add position="before">
+                <![CDATA[
+                    // Swatches Options
+                    html += '  <td class="text-center">';
+                    html += '    <select class="form-control image-opt" id="product-image-option-' + image_row + '" data-row="' + image_row + '" style="margin-bottom: 10px;">';
+                    html += '       <option value="0">{{ text_choose_option }}</option>';
+                    {% for product_option in product_options %}
+                    {% if product_option.type == "select" or product_option.type == "radio" %}
+                    html += '       <option value="{{ product_option.product_option_id }}">{{ product_option.name }}</option>';
+                    {% endif %}
+                    {% endfor %}
+                    html += '    </select>';
+                    {% for product_option in product_options %}
+                    {% if product_option.type == "select" or product_option.type == "radio" %}
+                    html += '    <select class="form-control image-opt-value" id="product-image-option-' + image_row + '-{{ product_option.product_option_id }}" data-row="' + image_row + '" data-type="{{ product_option.product_option_id }}" style="display: none;">';
+                    html += '       <option value="0">{{ text_choose_value }}</option>';
+                    {% for po_value in product_option.product_option_value %}
+                    {% if option_values[product_option.option_id] %}
+                    {% for option_value in option_values[product_option.option_id] %}
+                    {% if option_value.option_value_id == po_value.option_value_id %}
+                    html += '       <option value="{{ po_value.product_option_value_id }}">{{ option_value.name }}</option>';
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                    html += '    </select>';
+                    {% endif %}
+                    {% endfor %}
+                    html += '  </td>';
+
+                    //Product Rotator
+                    html += ' <td class="text-center">';
+                    html += '   <select name="product_image[' + image_row + '][is_rotator]" class="form-control rotator-select">';
+                    html += '     <option value="1">{{ text_yes }}</option>';
+                    html += '     <option value="0" selected="selected">{{ text_no }}</option>';
+                    html += '   </select>';
+                    html += ' </td>';
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/product/product.php">
+        <operation>
+            <search><![CDATA[$data['heading_title'] = $product_info['name'];]]></search>
+            <add position="before"><![CDATA[
+            /* Zoom & Swatches */
+            $store_id = $this->config->get('config_store_id');
+            $use_swatches = (int) $this->config->get('module_octhemeoption_use_swatches')[$store_id];
+            $use_zoom = (int) $this->config->get('module_octhemeoption_use_zoom')[$store_id];
+            ]]></add>
+        </operation>
+        <operation>
+            <search><![CDATA[$data['images'] = array();]]></search>
+            <add position="before"><![CDATA[
+            if($use_swatches) {
+                $data['use_swatches'] = true;
+                $data['icon_swatches_width'] = $this->config->get('module_octhemeoption_swatches_width')[$store_id];
+                $data['icon_swatches_height'] = $this->config->get('module_octhemeoption_swatches_height')[$store_id];
+                $data['swatches_option'] = $this->config->get('module_octhemeoption_swatches_option')[$store_id];
+
+                if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/occolorswatches/swatches.css')) {
+                    $this->document->addStyle('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/occolorswatches/swatches.css');
+                } else {
+                    $this->document->addStyle('catalog/view/theme/default/stylesheet/occolorswatches/swatches.css');
+                }
+
+                $this->document->addScript('catalog/view/javascript/occolorswatches/swatches.js');
+            } else {
+                $data['use_swatches'] = false;
+            }
+            
+            if($use_zoom) {
+                $data['use_zoom'] = true;
+
+                if ($product_info['image']) {
+                    $data['small_image'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_height'));
+                } else {
+                    $data['small_image'] = '';
+                }
+
+                if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/oczoom/zoom.css')) {
+                    $this->document->addStyle('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/oczoom/zoom.css');
+                } else {
+                    $this->document->addStyle('catalog/view/theme/default/stylesheet/oczoom/zoom.css');
+                }
+
+                $data['popup_dimension'] = array(
+                    'width' => $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_width'),
+                    'height' => $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_height')
+                );
+
+                $data['thumb_dimension'] = array(
+                    'width' => $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_width'),
+                    'height' => $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_height')
+                );
+
+                $data['small_dimension'] = array(
+                    'width' => $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_width'),
+                    'height' => $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_height')
+                );
+
+                $bg_status = (int) $this->config->get('module_octhemeoption_zoom_background_status')[$store_id];
+                if($bg_status) {
+                    $zoom_bg_status = true;
+                } else {
+                    $zoom_bg_status = false;
+                }
+
+                $title_status = (int) $this->config->get('module_octhemeoption_zoom_title')[$store_id];
+                if($title_status) {
+                    $zoom_title_status = true;
+                } else {
+                    $zoom_title_status = false;
+                }
+
+                $data['zoom_config'] = array(
+                    'position' => $this->config->get('module_octhemeoption_zoom_position')[$store_id],
+                    'space' => $this->config->get('module_octhemeoption_zoom_space')[$store_id],
+                    'bg_status' => $zoom_bg_status,
+                    'bg_color' => '#' . $this->config->get('module_octhemeoption_zoom_background_color')[$store_id],
+                    'bg_opacity' => $this->config->get('module_octhemeoption_zoom_background_opacity')[$store_id],
+                    'title_status' => $zoom_title_status
+                );
+
+                $this->document->addStyle('catalog/view/javascript/cloudzoom/css/cloud-zoom.css');
+                $this->document->addScript('catalog/view/javascript/cloudzoom/jquery.js');
+                $this->document->addScript('catalog/view/javascript/cloudzoom/cloud-zoom.1.0.2.min.js');
+                $this->document->addScript('catalog/view/javascript/cloudzoom/zoom.js');
+            } else {
+                $data['use_zoom'] = false;
+            }
+
+            ]]></add>
+        </operation>
+        <operation>
+            <search><![CDATA[$data['images'][] = array(]]></search>
+            <add position="after"><![CDATA[
+                    'product_option_value_id' => $result['product_option_value_id'],
+                    'product_image_option' => $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_height')),
+            ]]></add>
+        </operation>
+    </file>
+    
+    <!-- THEME OPTION -->
+    <file path="catalog/controller/common/header.php">
+        <operation>
+            <search><![CDATA[return $this->load->view('common/header', $data);]]></search>
+            <add position="before"><![CDATA[
+        $data['store_id'] = $this->config->get('config_store_id');
+        $data['theme_option_status'] = $this->config->get('module_octhemeoption_status');
+        $data['a_tag'] = $this->config->get('module_octhemeoption_a_tag');
+        $data['header_tag'] = $this->config->get('module_octhemeoption_header_tag');
+        $data['body_css'] = $this->config->get('module_octhemeoption_body');
+            ]]></add>
+        </operation>
+    </file>
+
+    <!-- Layouts Position -->
+    <file path="admin/controller/design/layout.php">
+        <operation>
+            <search><![CDATA[$this->response->setOutput($this->load->view('design/layout_form', $data));]]></search>
+            <add position="replace"><![CDATA[
+                $this->response->setOutput($this->load->view('design/layout_plaza_form', $data));
+            ]]></add>
+        </operation>
+    </file>
+</modification>
