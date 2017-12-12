@@ -42,8 +42,8 @@
                     <ul class="nav nav-tabs">
                         <li><a href="#tab-stylesheet" data-toggle="tab">{{ tab_stylesheet }}</a></li>
                         <li><a href="#tab-configuration" data-toggle="tab">{{ tab_configuration }}</a></li>
-                        <li class="active"><a href="#tab-product" data-toggle="tab">{{ tab_product }}</a></li>
-                        <li><a href="#tab-category" data-toggle="tab">{{ tab_category }}</a></li>
+                        <li><a href="#tab-product" data-toggle="tab">{{ tab_product }}</a></li>
+                        <li class="active"><a href="#tab-category" data-toggle="tab">{{ tab_category }}</a></li>
                         <li><a href="#tab-database" data-toggle="tab">{{ tab_backup }}</a></li>
                     </ul>
 
@@ -291,7 +291,7 @@
                             {% endfor %}
                         </div>
 
-                        <div class="tab-pane active" id="tab-product">
+                        <div class="tab-pane" id="tab-product">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="input-product-store">{{ entry_store }}</label>
                                 <div class="col-sm-6">
@@ -412,7 +412,7 @@
                             {% endfor %}
                         </div>
 
-                        <div class="tab-pane" id="tab-category">
+                        <div class="tab-pane active" id="tab-category">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="input-category-store">{{ entry_store }}</label>
                                 <div class="col-sm-6">
@@ -435,7 +435,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group ">
+                                    <div class="form-group">
                                         <label class="col-sm-2 control-label" for="input-columns-{{ store.store_id }}">{{ entry_columns_grid }}</label>
                                         <div class="col-sm-6">
                                             <select name="module_octhemeoption_grid_columns[{{ store.store_id }}]" id="input-columns-{{ store.store_id }}" class="form-control">
@@ -464,6 +464,7 @@
                                         <label class="col-sm-2 control-label" for="input-product-image-{{ store.store_id }}">{{ entry_product_image }}</label>
                                         <div class="col-sm-6">
                                             <select name="module_octhemeoption_image_effect[{{ store.store_id }}]" id="input-product-image-{{ store.store_id }}" class="form-control">
+                                                <option value="none" {% if module_octhemeoption_image_effect[store.store_id] == 'none' %}selected="selected" {% endif %}>{{ text_none }}</option>
                                                 <option value="rotator" {% if module_octhemeoption_image_effect[store.store_id] == 'rotator' %}selected="selected" {% endif %}>{{ text_use_rotator }}</option>
                                                 <option value="swatches" {% if module_octhemeoption_image_effect[store.store_id] == 'swatches' %}selected="selected" {% endif %}>{{ text_use_swatches }}</option>
                                             </select>

@@ -11,7 +11,7 @@ $_['text_import_success']  = 'Success: You have imported Theme Database!';
 $_['text_list']            = 'List View';
 $_['text_grid']            = 'Grid View';
 $_['text_detail']          = 'Detail View';
-$_['text_use_rotator']     = 'Use Rotator Image';
+$_['text_use_rotator']     = 'Use Rotate Image';
 $_['text_use_swatches']    = 'Use Swatches Image';
 $_['text_outside']         = 'Outside';
 $_['text_inside']          = 'Inside';
@@ -19,6 +19,7 @@ $_['text_zoom_space']      = 'Space';
 $_['text_for_space']       = 'Use for Outside Position';
 $_['text_choose_option']   = '-- Choose Option --';
 $_['text_choose_value']    = '-- Choose Value --';
+$_['text_none']            = 'None';
 
 // Tab
 $_['tab_stylesheet']       = 'Stylesheet CSS';
