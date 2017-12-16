@@ -59,6 +59,8 @@
               <button type="button" class="btn btn-default btn-grid-columns" data-toggle="tooltip" title="4">4</button>
               <button type="button" class="btn btn-default btn-grid-columns" data-toggle="tooltip" title="5">5</button>
               <button type="button" class="btn btn-default btn-list" data-toggle="tooltip" title="{{ button_list }}"><i class="fa fa-th-list"></i></button>
+              <input type="hidden" id="category-view-type" value="{{ category_view }}" />
+              <input type="hidden" id="category-grid-cols" value="{{ grid_columns }}" />
             {% else %}
               <button type="button" id="list-view" class="btn btn-default" data-toggle="tooltip" title="{{ button_list }}"><i class="fa fa-th-list"></i></button>
               <button type="button" id="grid-view" class="btn btn-default" data-toggle="tooltip" title="{{ button_grid }}"><i class="fa fa-th"></i></button>
