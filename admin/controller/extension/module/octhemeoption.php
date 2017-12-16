@@ -232,6 +232,12 @@ class ControllerExtensionModuleOcthemeoption extends Controller
             $data['module_octhemeoption_zoom_title'] = $this->config->get('module_octhemeoption_zoom_title');
         }
 
+        if (isset($this->request->post['module_octhemeoption_custom_view'])) {
+            $data['module_octhemeoption_custom_view'] = $this->request->post['module_octhemeoption_custom_view'];
+        } else {
+            $data['module_octhemeoption_custom_view'] = $this->config->get('module_octhemeoption_custom_view');
+        }
+
         if (isset($this->request->post['module_octhemeoption_category_view'])) {
             $data['module_octhemeoption_category_view'] = $this->request->post['module_octhemeoption_category_view'];
         } else {

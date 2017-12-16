@@ -426,12 +426,25 @@
                             {% for store in stores %}
                                 <div id="frm-category-{{ store.store_id }}" class="frm-category">
                                     <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="input-custom-view-{{ store.store_id }}">{{ entry_custom_view }}</label>
+                                        <div class="col-sm-6">
+                                            <select name="module_octhemeoption_custom_view[{{ store.store_id }}]" id="input-custom-view-{{ store.store_id }}" class="form-control">
+                                                {% if module_octhemeoption_custom_view[store.store_id] %}
+                                                    <option value="1" selected="selected">{{ text_enabled }}</option>
+                                                    <option value="0">{{ text_disabled }}</option>
+                                                {% else %}
+                                                    <option value="1">{{ text_enabled }}</option>
+                                                    <option value="0" selected="selected">{{ text_disabled }}</option>
+                                                {% endif %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="col-sm-2 control-label" for="input-cview-{{ store.store_id }}">{{ entry_category_view }}</label>
                                         <div class="col-sm-6">
                                             <select name="module_octhemeoption_category_view[{{ store.store_id }}]" id="input-cview-{{ store.store_id }}" class="form-control">
                                                 <option value="list" {% if module_octhemeoption_category_view[store.store_id] == 'list' %} selected="selected" {% endif %}>{{ text_list }}</option>
                                                 <option value="grid" {% if module_octhemeoption_category_view[store.store_id] == 'grid' %} selected="selected" {% endif %}>{{ text_grid }}</option>
-                                                <option value="detail" {% if module_octhemeoption_category_view[store.store_id] == 'detail' %} selected="selected" {% endif %}>{{ text_detail }}</option>
                                             </select>
                                         </div>
                                     </div>

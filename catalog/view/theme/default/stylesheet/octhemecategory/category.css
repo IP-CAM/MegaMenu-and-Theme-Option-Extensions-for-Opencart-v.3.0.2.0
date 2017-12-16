@@ -1,6 +1,13 @@
+/* Swatches Options */
 .ul-swatches-colors { list-style: none; text-align: left; overflow: hidden; padding: 0; }
 .ul-swatches-colors li { float: left; border: 1px solid #fff; display: inline-block; position: relative; margin-right: 5px; padding: 2px; }
 .ul-swatches-colors .swatches-options:hover { border: 1px solid #E88888; }
 .ul-swatches-colors .swatches-options.checked { border: 1px solid #ff0000; }
 .ul-swatches-colors .swatches-options a { float: left; display: inline-block; }
 .option-swatches { display: none; }
+.category-options .ul-swatches-colors {text-align: center;}
+.category-options .ul-swatches-colors li {float: none;display: inline-block;vertical-align: top;}
+
+/* Rotate Image */
+.rotate-image-container .img-rotate-image { position:absolute;top:0;left:0;bottom:0;right:0;visibility:hidden;opacity: 0;z-index: 1;}
+.rotate-image-container:hover .img-rotate-image {opacity: 1;visibility: visible}
