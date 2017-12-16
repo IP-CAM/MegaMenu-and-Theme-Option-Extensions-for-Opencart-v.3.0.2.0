@@ -132,11 +132,11 @@
               <div class="image swatches-image-container">
                 <a href="{{ product.href }}">
                   <img src="{{ product.thumb }}"  alt="{{ product.name }}" title="{{ product.name }}"
-                       class="img-responsive img-cate-{{ product.product_id }} img-default-{{ product.product_id }}" />
+                       class="img-responsive img-cate-{{ product.product_id }}" />
+                  <input type="hidden" value="{{ product.thumb }}" class="img-default-{{ product.product_id }}" />
                   {% if product.swatches_images %}
                     {% for s_image in product.swatches_images %}
-                      <img src="{{ s_image.image }}" alt="{{ product.name }}" title="{{ product.name }}"
-                           class="img-responsive img-swatch-image img-cate-{{ product.product_id }} img-swatch-{{ product.product_id }}-{{ s_image.product_option_value_id }}" />
+                      <input type="hidden" value="{{ s_image.image }}" class="img-swatch-{{ product.product_id }}-{{ s_image.product_option_value_id }}" />
                     {% endfor %}
                   {% endif %}
                 </a>

@@ -55,17 +55,18 @@ var swatches = {
         if(element.closest('.swatches-options').hasClass('checked')) {
             element.closest('.swatches-options').removeClass('checked');
 
-            $('.img-cate-' + product_id).hide();
-            $('.img-default-' + product_id).show();
+            var img_src = $('.img-default-' + product_id).val();
+            $('.img-cate-' + product_id).attr('src', img_src);
         } else {
             element.closest('.ul-swatches-colors').find('.swatches-options').removeClass('checked');
             element.closest('.swatches-options').addClass('checked');
 
-            $('.img-cate-' + product_id).hide();
             if($('.img-swatch-' + product_id + '-' + product_option_value_id).length) {
-                $('.img-swatch-' + product_id + '-' + product_option_value_id).show();
+                var img_src = $('.img-swatch-' + product_id + '-' + product_option_value_id).val();
+                $('.img-cate-' + product_id).attr('src', img_src);
             } else {
-                $('.img-default-' + product_id).show();
+                var img_src = $('.img-default-' + product_id).val();
+                $('.img-cate-' + product_id).attr('src', img_src);
             }
         }
     }
