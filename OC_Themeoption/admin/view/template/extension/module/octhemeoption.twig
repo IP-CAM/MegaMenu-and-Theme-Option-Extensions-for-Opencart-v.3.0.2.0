@@ -42,8 +42,8 @@
                     <ul class="nav nav-tabs">
                         <li><a href="#tab-stylesheet" data-toggle="tab">{{ tab_stylesheet }}</a></li>
                         <li><a href="#tab-configuration" data-toggle="tab">{{ tab_configuration }}</a></li>
-                        <li class="active"><a href="#tab-product" data-toggle="tab">{{ tab_product }}</a></li>
-                        <li><a href="#tab-category" data-toggle="tab">{{ tab_category }}</a></li>
+                        <li><a href="#tab-product" data-toggle="tab">{{ tab_product }}</a></li>
+                        <li class="active"><a href="#tab-category" data-toggle="tab">{{ tab_category }}</a></li>
                         <li><a href="#tab-database" data-toggle="tab">{{ tab_backup }}</a></li>
                     </ul>
 
@@ -291,7 +291,7 @@
                             {% endfor %}
                         </div>
 
-                        <div class="tab-pane active" id="tab-product">
+                        <div class="tab-pane" id="tab-product">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="input-product-store">{{ entry_store }}</label>
                                 <div class="col-sm-6">
@@ -308,7 +308,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="input-swatches-{{ store.store_id }}">{{ entry_use_swatches }}</label>
                                         <div class="col-sm-6">
-                                            <select name="module_octhemeoption_use_swatches[{{ store.store_id }}]" id="input-swatches-{{ store.store_id }}" data-store-id="{{ store.store_id }}" class="form-control swatches-status">
+                                            <select name="module_octhemeoption_use_swatches[{{ store.store_id }}]" id="input-swatches-{{ store.store_id }}" class="form-control">
                                                 {% if module_octhemeoption_use_swatches[store.store_id] %}
                                                     <option value="1" selected="selected">{{ text_enabled }}</option>
                                                     <option value="0">{{ text_disabled }}</option>
@@ -319,7 +319,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group swatches-settings swatches-settings-{{ store.store_id }}">
+                                    <div class="form-group">
                                         <label class="col-sm-2 control-label" for="input-dimension-{{ store.store_id }}">{{ entry_icon_swatches }}</label>
                                         <div class="col-sm-3">
                                             <input type="text" value="{{ module_octhemeoption_swatches_width[store.store_id] }}" name="module_octhemeoption_swatches_width[{{ store.store_id }}]" placeholder="{{ entry_width }}" class="form-control" />
@@ -328,7 +328,7 @@
                                             <input type="text" value="{{ module_octhemeoption_swatches_height[store.store_id] }}" name="module_octhemeoption_swatches_height[{{ store.store_id }}]" placeholder="{{ entry_height }}" class="form-control" />
                                         </div>
                                     </div>
-                                    <div class="form-group swatches-settings swatches-settings-{{ store.store_id }}">
+                                    <div class="form-group">
                                         <label class="col-sm-2 control-label" for="input-color-option-{{ store.store_id }}">{{ entry_color_option }}</label>
                                         <div class="col-sm-6">
                                             <select name="module_octhemeoption_swatches_option[{{ store.store_id }}]" id="input-color-option-{{ store.store_id }}" class="form-control">
@@ -412,7 +412,7 @@
                             {% endfor %}
                         </div>
 
-                        <div class="tab-pane" id="tab-category">
+                        <div class="tab-pane active" id="tab-category">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="input-category-store">{{ entry_store }}</label>
                                 <div class="col-sm-6">
@@ -435,7 +435,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group ">
+                                    <div class="form-group">
                                         <label class="col-sm-2 control-label" for="input-columns-{{ store.store_id }}">{{ entry_columns_grid }}</label>
                                         <div class="col-sm-6">
                                             <select name="module_octhemeoption_grid_columns[{{ store.store_id }}]" id="input-columns-{{ store.store_id }}" class="form-control">
@@ -464,9 +464,19 @@
                                         <label class="col-sm-2 control-label" for="input-product-image-{{ store.store_id }}">{{ entry_product_image }}</label>
                                         <div class="col-sm-6">
                                             <select name="module_octhemeoption_image_effect[{{ store.store_id }}]" id="input-product-image-{{ store.store_id }}" class="form-control">
+                                                <option value="none" {% if module_octhemeoption_image_effect[store.store_id] == 'none' %}selected="selected" {% endif %}>{{ text_none }}</option>
                                                 <option value="rotator" {% if module_octhemeoption_image_effect[store.store_id] == 'rotator' %}selected="selected" {% endif %}>{{ text_use_rotator }}</option>
                                                 <option value="swatches" {% if module_octhemeoption_image_effect[store.store_id] == 'swatches' %}selected="selected" {% endif %}>{{ text_use_swatches }}</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="input-product-image-{{ store.store_id }}">{{ entry_icon_swatches }}</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" value="{{ module_octhemeoption_cate_swatches_width[store.store_id] }}" name="module_octhemeoption_cate_swatches_width[{{ store.store_id }}]" placeholder="{{ entry_width }}" class="form-control" />
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="text" value="{{ module_octhemeoption_cate_swatches_height[store.store_id] }}" name="module_octhemeoption_cate_swatches_height[{{ store.store_id }}]" placeholder="{{ entry_height }}" class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -559,31 +569,6 @@
                 $('#stylesheet-settings-' + store_id).show();
             } else {
                 $('#stylesheet-settings-' + store_id).hide();
-            }
-        });
-
-        // Enable / Disable Swatches Settings
-        $('.swatches-settings').hide();
-        var swatches_status = $('.swatches-status');
-        swatches_status.each(function () {
-            var store_id = $(this).data('store-id');
-            var status = parseInt($('#input-swatches-' + store_id).val());
-
-            if(status === 1) {
-                $('.swatches-settings-' + store_id).show();
-            } else {
-                $('.swatches-settings-' + store_id).hide();
-            }
-        });
-
-        swatches_status.change(function () {
-            var store_id = $(this).data('store-id');
-            var status = parseInt($('#input-swatches-' + store_id).val());
-
-            if(status === 1) {
-                $('.swatches-settings-' + store_id).show();
-            } else {
-                $('.swatches-settings-' + store_id).hide();
             }
         });
 

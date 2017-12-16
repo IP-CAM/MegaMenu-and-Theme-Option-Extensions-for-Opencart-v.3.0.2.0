@@ -116,6 +116,9 @@
             <add position="after"><![CDATA[
         $this->load->model('catalog/ocproductrotator');
         $this->model_catalog_ocproductrotator->installProductRotator();
+
+        $this->load->model('catalog/occolorswatches');
+        $this->model_catalog_occolorswatches->installSwatchesAttribute();
             ]]></add>
         </operation>
         <operation>

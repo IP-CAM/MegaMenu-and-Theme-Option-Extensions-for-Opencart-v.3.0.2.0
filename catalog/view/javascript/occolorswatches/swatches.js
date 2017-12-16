@@ -46,5 +46,27 @@ var swatches = {
                 $('#swatches-image-container .swatches-image').attr('href', popup).find('img').attr('src', thumb);
             }
         }
+    },
+    
+    'changeSwatchInCategory' : function (element) {
+        var product_option_value_id = element.data('product-option-value-id');
+        var product_id = element.data('product-id');
+
+        if(element.closest('.swatches-options').hasClass('checked')) {
+            element.closest('.swatches-options').removeClass('checked');
+
+            $('.img-cate-' + product_id).hide();
+            $('.img-default-' + product_id).show();
+        } else {
+            element.closest('.ul-swatches-colors').find('.swatches-options').removeClass('checked');
+            element.closest('.swatches-options').addClass('checked');
+
+            $('.img-cate-' + product_id).hide();
+            if($('.img-swatch-' + product_id + '-' + product_option_value_id).length) {
+                $('.img-swatch-' + product_id + '-' + product_option_value_id).show();
+            } else {
+                $('.img-default-' + product_id).show();
+            }
+        }
     }
 }

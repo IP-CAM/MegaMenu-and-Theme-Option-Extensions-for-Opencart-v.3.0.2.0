@@ -256,6 +256,18 @@ class ControllerExtensionModuleOcthemeoption extends Controller
             $data['module_octhemeoption_image_effect'] = $this->config->get('module_octhemeoption_image_effect');
         }
 
+        if (isset($this->request->post['module_octhemeoption_cate_swatches_width'])) {
+            $data['module_octhemeoption_cate_swatches_width'] = $this->request->post['module_octhemeoption_cate_swatches_width'];
+        } else {
+            $data['module_octhemeoption_cate_swatches_width'] = $this->config->get('module_octhemeoption_cate_swatches_width');
+        }
+
+        if (isset($this->request->post['module_octhemeoption_cate_swatches_height'])) {
+            $data['module_octhemeoption_cate_swatches_height'] = $this->request->post['module_octhemeoption_cate_swatches_height'];
+        } else {
+            $data['module_octhemeoption_cate_swatches_height'] = $this->config->get('module_octhemeoption_cate_swatches_height');
+        }
+
         $this->load->model('tool/image');
 
         if (isset($this->request->post['module_octhemeoption_loader_img']) && is_file(DIR_IMAGE . $this->request->post['module_octhemeoption_loader_img'])) {

@@ -308,7 +308,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="input-swatches-{{ store.store_id }}">{{ entry_use_swatches }}</label>
                                         <div class="col-sm-6">
-                                            <select name="module_octhemeoption_use_swatches[{{ store.store_id }}]" id="input-swatches-{{ store.store_id }}" data-store-id="{{ store.store_id }}" class="form-control swatches-status">
+                                            <select name="module_octhemeoption_use_swatches[{{ store.store_id }}]" id="input-swatches-{{ store.store_id }}" class="form-control">
                                                 {% if module_octhemeoption_use_swatches[store.store_id] %}
                                                     <option value="1" selected="selected">{{ text_enabled }}</option>
                                                     <option value="0">{{ text_disabled }}</option>
@@ -319,7 +319,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group swatches-settings swatches-settings-{{ store.store_id }}">
+                                    <div class="form-group">
                                         <label class="col-sm-2 control-label" for="input-dimension-{{ store.store_id }}">{{ entry_icon_swatches }}</label>
                                         <div class="col-sm-3">
                                             <input type="text" value="{{ module_octhemeoption_swatches_width[store.store_id] }}" name="module_octhemeoption_swatches_width[{{ store.store_id }}]" placeholder="{{ entry_width }}" class="form-control" />
@@ -328,7 +328,7 @@
                                             <input type="text" value="{{ module_octhemeoption_swatches_height[store.store_id] }}" name="module_octhemeoption_swatches_height[{{ store.store_id }}]" placeholder="{{ entry_height }}" class="form-control" />
                                         </div>
                                     </div>
-                                    <div class="form-group swatches-settings swatches-settings-{{ store.store_id }}">
+                                    <div class="form-group">
                                         <label class="col-sm-2 control-label" for="input-color-option-{{ store.store_id }}">{{ entry_color_option }}</label>
                                         <div class="col-sm-6">
                                             <select name="module_octhemeoption_swatches_option[{{ store.store_id }}]" id="input-color-option-{{ store.store_id }}" class="form-control">
@@ -470,6 +470,15 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="input-product-image-{{ store.store_id }}">{{ entry_icon_swatches }}</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" value="{{ module_octhemeoption_cate_swatches_width[store.store_id] }}" name="module_octhemeoption_cate_swatches_width[{{ store.store_id }}]" placeholder="{{ entry_width }}" class="form-control" />
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="text" value="{{ module_octhemeoption_cate_swatches_height[store.store_id] }}" name="module_octhemeoption_cate_swatches_height[{{ store.store_id }}]" placeholder="{{ entry_height }}" class="form-control" />
+                                        </div>
+                                    </div>
                                 </div>
                             {% endfor %}
                         </div>
@@ -560,31 +569,6 @@
                 $('#stylesheet-settings-' + store_id).show();
             } else {
                 $('#stylesheet-settings-' + store_id).hide();
-            }
-        });
-
-        // Enable / Disable Swatches Settings
-        $('.swatches-settings').hide();
-        var swatches_status = $('.swatches-status');
-        swatches_status.each(function () {
-            var store_id = $(this).data('store-id');
-            var status = parseInt($('#input-swatches-' + store_id).val());
-
-            if(status === 1) {
-                $('.swatches-settings-' + store_id).show();
-            } else {
-                $('.swatches-settings-' + store_id).hide();
-            }
-        });
-
-        swatches_status.change(function () {
-            var store_id = $(this).data('store-id');
-            var status = parseInt($('#input-swatches-' + store_id).val());
-
-            if(status === 1) {
-                $('.swatches-settings-' + store_id).show();
-            } else {
-                $('.swatches-settings-' + store_id).hide();
             }
         });
 

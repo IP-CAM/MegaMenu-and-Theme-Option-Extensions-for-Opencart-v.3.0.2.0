@@ -4,3 +4,6 @@
 .ul-swatches-colors .swatches-options.checked { border: 1px solid #ff0000; }
 .ul-swatches-colors .swatches-options a { float: left; display: inline-block; }
 .option-swatches { display: none; }
+.category-options .ul-swatches-colors {text-align: center;}
+.category-options .ul-swatches-colors li {float: none;display: inline-block;vertical-align: top;}
+.img-swatch-image { display: none; }
