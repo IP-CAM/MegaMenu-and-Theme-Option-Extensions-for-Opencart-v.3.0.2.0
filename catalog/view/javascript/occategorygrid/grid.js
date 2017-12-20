@@ -3,13 +3,14 @@ $(document).ready(function () {
     var cols = $('#category-grid-cols').val();
 
     if(type == "list") {
-        category_view.initView(type, cols, $('.btn-list'));
+        category_view.initView(type, cols, 'btn-list');
     }
 
     if(type == 'grid') {
-        category_view.initView(type, cols, $('.btn-grid-' + cols));
+        category_view.initView(type, cols, 'btn-grid-' + cols);
     }
 });
+
 var category_view = {
     'initView' : function (type, cols, element) {
         category_view.changeView(type, cols, element);
@@ -37,6 +38,6 @@ var category_view = {
         }
 
         $('.btn-custom-view').removeClass('active');
-        element.addClass('active');
+        $('.' + element).addClass('active');
     }
 }

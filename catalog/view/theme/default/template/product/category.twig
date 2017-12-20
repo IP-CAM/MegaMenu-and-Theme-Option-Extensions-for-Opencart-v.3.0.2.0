@@ -54,11 +54,11 @@
         <div class="col-md-4 col-sm-6 hidden-xs">
           <div class="btn-group btn-group-sm">
             {% if use_custom_view %}
-              <button type="button" onclick="category_view.changeView('grid', 2, $(this))" class="btn btn-default btn-custom-view btn-grid-2" data-toggle="tooltip" title="2">2</button>
-              <button type="button" onclick="category_view.changeView('grid', 3, $(this))" class="btn btn-default btn-custom-view btn-grid-3" data-toggle="tooltip" title="3">3</button>
-              <button type="button" onclick="category_view.changeView('grid', 4, $(this))" class="btn btn-default btn-custom-view btn-grid-4" data-toggle="tooltip" title="4">4</button>
-              <button type="button" onclick="category_view.changeView('grid', 5, $(this))" class="btn btn-default btn-custom-view btn-grid-5" data-toggle="tooltip" title="5">5</button>
-              <button type="button" onclick="category_view.changeView('list', 0, $(this))" class="btn btn-default btn-custom-view btn-list" data-toggle="tooltip" title="{{ button_list }}"><i class="fa fa-th-list"></i></button>
+              <button type="button" onclick="category_view.changeView('grid', 2, 'btn-grid-2')" class="btn btn-default btn-custom-view btn-grid-2" data-toggle="tooltip" title="2">2</button>
+              <button type="button" onclick="category_view.changeView('grid', 3, 'btn-grid-3')" class="btn btn-default btn-custom-view btn-grid-3" data-toggle="tooltip" title="3">3</button>
+              <button type="button" onclick="category_view.changeView('grid', 4, 'btn-grid-4')" class="btn btn-default btn-custom-view btn-grid-4" data-toggle="tooltip" title="4">4</button>
+              <button type="button" onclick="category_view.changeView('grid', 5, 'btn-grid-5')" class="btn btn-default btn-custom-view btn-grid-5" data-toggle="tooltip" title="5">5</button>
+              <button type="button" onclick="category_view.changeView('list', 0, 'btn-list')" class="btn btn-default btn-custom-view btn-list" data-toggle="tooltip" title="{{ button_list }}"><i class="fa fa-th-list"></i></button>
               <input type="hidden" id="category-view-type" value="{{ category_view }}" />
               <input type="hidden" id="category-grid-cols" value="{{ grid_columns }}" />
             {% else %}
