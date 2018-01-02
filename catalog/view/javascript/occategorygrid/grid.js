@@ -1,13 +1,21 @@
 $(document).ready(function () {
-    var type = $('#category-view-type').val();
-    var cols = $('#category-grid-cols').val();
+    if(localStorage.getItem('type') == null) {
+        var type = $('#category-view-type').val();
+        var cols = $('#category-grid-cols').val();
 
-    if(type == "list") {
-        category_view.initView(type, cols, 'btn-list');
-    }
+        if(type == "list") {
+            category_view.initView(type, cols, 'btn-list');
+        }
 
-    if(type == 'grid') {
-        category_view.initView(type, cols, 'btn-grid-' + cols);
+        if(type == 'grid') {
+            category_view.initView(type, cols, 'btn-grid-' + cols);
+        }
+    } else {
+        var type = localStorage.getItem('type');
+        var cols = localStorage.getItem('cols');
+        var element = localStorage.getItem('element');
+
+        category_view.initView(type, cols, element);
     }
 });
 
@@ -39,5 +47,9 @@ var category_view = {
 
         $('.btn-custom-view').removeClass('active');
         $('.' + element).addClass('active');
+
+        localStorage.setItem('type', type);
+        localStorage.setItem('cols', cols);
+        localStorage.setItem('element', element);
     }
 }
