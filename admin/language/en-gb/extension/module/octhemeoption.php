@@ -19,6 +19,8 @@ $_['text_for_space']       = 'Use for Outside Position';
 $_['text_choose_option']   = '-- Choose Option --';
 $_['text_choose_value']    = '-- Choose Value --';
 $_['text_none']            = 'None';
+$_['text_column_left']     = 'Left Column';
+$_['text_column_right']    = 'Right Column';
 
 // Tab
 $_['tab_stylesheet']       = 'Stylesheet CSS';

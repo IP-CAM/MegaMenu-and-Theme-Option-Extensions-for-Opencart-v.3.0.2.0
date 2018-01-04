@@ -461,7 +461,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="input-layered-{{ store.store_id }}">{{ entry_use_layered }}</label>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-3">
                                             <select name="module_octhemeoption_use_layered[{{ store.store_id }}]" id="input-layered-{{ store.store_id }}" class="form-control">
                                                 {% if module_octhemeoption_use_layered[store.store_id] %}
                                                     <option value="1" selected="selected">{{ text_enabled }}</option>
@@ -470,6 +470,12 @@
                                                     <option value="1">{{ text_enabled }}</option>
                                                     <option value="0" selected="selected">{{ text_disabled }}</option>
                                                 {% endif %}
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <select name="module_octhemeoption_layered_column[{{ store.store_id }}]" class="form-control">
+                                                <option value="left" {% if module_octhemeoption_layered_column[store.store_id] == 'left' %} selected="selected" {% endif %}>{{ text_column_left }}</option>
+                                                <option value="right" {% if module_octhemeoption_layered_column[store.store_id] == 'right' %} selected="selected" {% endif %}>{{ text_column_right }}</option>
                                             </select>
                                         </div>
                                     </div>
