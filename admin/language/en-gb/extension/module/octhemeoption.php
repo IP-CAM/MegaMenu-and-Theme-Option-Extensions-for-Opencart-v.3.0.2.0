@@ -21,6 +21,7 @@ $_['text_choose_value']    = '-- Choose Value --';
 $_['text_none']            = 'None';
 $_['text_column_left']     = 'Left Column';
 $_['text_column_right']    = 'Right Column';
+$_['text_data_caution']    = 'Caution: If you change Home page by using data backup, all modules will be reset and active modules of theme.';
 
 // Tab
 $_['tab_stylesheet']       = 'Stylesheet CSS';
@@ -28,9 +29,9 @@ $_['tab_configuration']    = 'Module Configuration';
 $_['tab_a']                = '&lt; a &gt; Tag';
 $_['tab_header']           = 'Header Tag (h1,h2,..,h6)';
 $_['tab_body']             = 'Body';
-$_['tab_backup']           = 'Theme Database';
-$_['tab_product']          = 'Product Configuration';
-$_['tab_category']         = 'Category Configuration';
+$_['tab_backup']           = 'Data Storage';
+$_['tab_product']          = 'Product Page';
+$_['tab_category']         = 'Category Page';
 
 // Entry
 $_['entry_status']         = 'Enable Stylesheet Configuration';
@@ -49,7 +50,7 @@ $_['entry_line_height']    = 'Line Height';
 $_['entry_bg_color']       = 'Background Color';
 $_['entry_bg_hover_color'] = 'Background Color when Hover';
 $_['entry_loader_image']   = 'Ajax Loader Image';
-$_['entry_theme_database'] = 'Choose Theme Restore';
+$_['entry_theme_database'] = 'Choose Theme Data';
 $_['entry_use_swatches']   = 'Use Color Swatches';
 $_['entry_color_option']   = 'Use Option for Swatches';
 $_['entry_icon_swatches']  = 'Icon Swatches (W x H)';

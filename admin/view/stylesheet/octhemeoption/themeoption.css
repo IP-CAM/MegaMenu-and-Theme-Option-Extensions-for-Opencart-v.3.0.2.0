@@ -1,0 +1,44 @@
+.theme-option-container .panel-default {
+    border: none;
+    background: #000;
+}
+.theme-option-container .panel-default .panel-heading {
+    color: #fff;
+    border-color: #d21f27;
+    background: #000;
+    border-width: 2px;
+    border-radius: 0;
+}
+.theme-option-container .panel-body {
+    background: #fff;
+    min-height: 200px;
+    border-right: solid 1px #dcdcdc;
+}
+.theme-option-container button { background-color: #d21f27; border-color: #d21f27; }
+.theme-option-container button:hover { background-color: #b01927; border-color: #a11d4e; }
+.theme-option-container .notification {text-align: center;margin-top: 15px;font-size: 14px;}
+.theme-option-container .notification .fa-warning {color: #f27636;margin-right: 5px;}
+.col-left {padding-right: 0;}
+.col-right {padding-left: 0;}
+.menu-sections li {width: 100%;background: #000000;}
+.menu-sections li i {margin-right: 10px;width: 15px;}
+.menu-sections li a {
+    margin: 0;
+    border: none;
+    color: #fff;
+}
+.menu-sections li.active a, .menu-sections li.active a:hover, .menu-sections li.active a:focus,
+.menu-sections li a:hover, .menu-sections li a:focus {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 0;
+    font-weight: inherit;
+}
+.tab-general {
+    margin-left: -15px;
+    margin-top: -15px;
+}
+.tab-general .tab-content {
+    padding-left: 15px;
+}

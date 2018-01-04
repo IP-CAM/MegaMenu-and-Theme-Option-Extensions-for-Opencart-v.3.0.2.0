@@ -278,6 +278,7 @@ class ControllerExtensionModuleOcthemeoption extends Controller
         $data['placeholder'] = $this->model_tool_image->resize('no_image.png', 50, 50);
 
         $this->document->addScript('view/javascript/octhemeoption/jscolor.js');
+        $this->document->addStyle('view/stylesheet/octhemeoption/themeoption.css');
 
         $data['header'] = $this->load->controller('common/header');
         $data['column_left'] = $this->load->controller('common/column_left');
