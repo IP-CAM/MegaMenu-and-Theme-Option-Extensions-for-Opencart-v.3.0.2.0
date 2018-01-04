@@ -21,7 +21,7 @@ $_['text_choose_value']    = '-- Choose Value --';
 $_['text_none']            = 'None';
 $_['text_column_left']     = 'Left Column';
 $_['text_column_right']    = 'Right Column';
-$_['text_data_caution']    = 'Caution: If you change Home page by using data backup, all modules will be reset and active modules of theme.';
+$_['text_data_caution']    = 'Caution: If you choose Home Page by using data backup, all modules will be reset and active modules of chosen Home Page.';
 
 // Tab
 $_['tab_stylesheet']       = 'Stylesheet CSS';

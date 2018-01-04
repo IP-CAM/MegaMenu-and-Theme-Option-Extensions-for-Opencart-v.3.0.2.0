@@ -1,6 +1,6 @@
 .theme-option-container .panel-default {
     border: none;
-    background: #000;
+    background: #36404a;
 }
 .theme-option-container .panel-default .panel-heading {
     color: #fff;
@@ -12,26 +12,27 @@
 .theme-option-container .panel-body {
     background: #fff;
     min-height: 200px;
-    border-right: solid 1px #dcdcdc;
 }
-.theme-option-container button { background-color: #d21f27; border-color: #d21f27; }
-.theme-option-container button:hover { background-color: #b01927; border-color: #a11d4e; }
+.theme-option-container .btn-theme-option { background-color: #d21f27; border-color: #d21f27; }
+.theme-option-container .btn-theme-option:hover { background-color: #b01927; border-color: #a11d4e; }
 .theme-option-container .notification {text-align: center;margin-top: 15px;font-size: 14px;}
 .theme-option-container .notification .fa-warning {color: #f27636;margin-right: 5px;}
 .col-left {padding-right: 0;}
 .col-right {padding-left: 0;}
-.menu-sections li {width: 100%;background: #000000;}
+.menu-sections li {width: 100%;}
 .menu-sections li i {margin-right: 10px;width: 15px;}
 .menu-sections li a {
     margin: 0;
     border: none;
+    border-bottom: 1px solid #364049;
     color: #fff;
 }
 .menu-sections li.active a, .menu-sections li.active a:hover, .menu-sections li.active a:focus,
 .menu-sections li a:hover, .menu-sections li a:focus {
-    background-color: #fff;
-    color: #000;
+    background-color: #000;
+    color: #fff;
     border: none;
+    border-bottom: 1px solid #000;
     border-radius: 0;
     font-weight: inherit;
 }
@@ -41,4 +42,32 @@
 }
 .tab-general .tab-content {
     padding-left: 15px;
+}
+.general-sections {
+    background-color: #e8e8e8;
+    margin-right: -15px;
+}
+.general-sections li a {
+    margin: 0;
+    border: none;
+    color: #5a5a5a;
+    background-color: #e8e8e8;
+}
+.general-sections li.active a, .general-sections li.active a:hover, .general-sections li.active a:focus,
+.general-sections li a:hover, .general-sections li a:focus {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-bottom: 1px solid #fff;
+    border-radius: 0;
+    font-weight: inherit;
+}
+.stylesheet-settings .nav-pills > li > a {
+    color: #000;
+}
+.stylesheet-settings .nav-pills > li.active > a,
+.stylesheet-settings .nav-pills > li.active > a:hover,
+.stylesheet-settings .nav-pills > li.active > a:focus {
+    background-color: #d21f27;
+    color: #fff;
 }
