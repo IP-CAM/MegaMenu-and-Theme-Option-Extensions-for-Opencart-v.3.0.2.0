@@ -12,9 +12,52 @@ class ModelExtensionModuleOcthemeoption extends Model
     }
 
     public function createBlogTable() {
-        $this->load->model('blog/ocblog');
+        $this->db->query("
+			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "article` (
+			    `article_id` INT(11) NOT NULL AUTO_INCREMENT,
+	            `sort_order` INT(11) NOT NULL DEFAULT '0',
+	            `status` TINYINT(1) NOT NULL DEFAULT '0',
+	            `image` varchar(255) DEFAULT NULL,
+	            `author` varchar(100) DEFAULT NULL,
+	            `date_added` DATETIME NOT NULL,
+	            `date_modified` DATETIME NOT NULL,
+	        PRIMARY KEY (`article_id`)
+		) DEFAULT COLLATE=utf8_general_ci;");
 
-        $this->model_blog_ocblog->install();
+        $this->db->query("
+			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "article_description` (
+			    `article_id` INT(11) NOT NULL,
+                `language_id` INT(11) NOT NULL,
+                `name` VARCHAR(255) NOT NULL,
+                `description` TEXT NOT NULL,
+                `intro_text` TEXT NOT NULL,
+                `meta_title` VARCHAR(255) NOT NULL,
+                `meta_description` VARCHAR(255) NOT NULL,
+                `meta_keyword` VARCHAR(255) NOT NULL,
+            PRIMARY KEY (`article_id`, `language_id`),
+	        INDEX `name` (`name`)
+		) DEFAULT COLLATE=utf8_general_ci;");
+
+        $this->db->query("
+			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "article_list` (
+			    `article_list_id` INT(11) NOT NULL AUTO_INCREMENT,
+                `name` VARCHAR(255) NOT NULL,
+                `status` TINYINT(1) NOT NULL DEFAULT '0',
+            PRIMARY KEY (`article_list_id`),
+	        INDEX `name` (`name`)
+		) DEFAULT COLLATE=utf8_general_ci;");
+
+        $this->db->query("
+			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "article_to_list` (
+			    `article_list_id` INT(11) NOT NULL,
+                `article_id` INT(11) NOT NULL
+		) DEFAULT COLLATE=utf8_general_ci;");
+
+        $this->db->query("
+			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "article_to_store` (
+			    `article_id` INT(11) NOT NULL,
+                `store_id` INT(11) NOT NULL
+		) DEFAULT COLLATE=utf8_general_ci;");
     }
 
     public function createCMSTable() {

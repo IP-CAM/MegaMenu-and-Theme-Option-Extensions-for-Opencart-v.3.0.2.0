@@ -3,21 +3,6 @@ class ControllerExtensionModuleOcthemeoption extends Controller
 {
     private $error = array();
 
-    public function install() {
-        $config = array(
-            'module_octhemeoption_status' => 1,
-            'module_octhemeoption_catalog' => 1,
-            'module_octhemeoption_rotator' => 1,
-            'module_octhemeoption_quickview' => 1
-        );
-
-        $this->load->model('setting/setting');
-        $this->load->model('extension/module/octhemeoption');
-
-        $this->model_extension_module_octhemeoption->createThemeTables();
-        $this->model_setting_setting->editSetting('module_octhemeoption', $config);
-    }
-
     public function index() {
         $this->load->language('extension/module/octhemeoption');
 
@@ -333,7 +318,10 @@ class ControllerExtensionModuleOcthemeoption extends Controller
                             $sql = str_replace("CREATE TABLE `oc_", "CREATE TABLE `" . DB_PREFIX, $sql);
                             $sql = str_replace("CREATE TABLE IF NOT EXISTS `oc_", "CREATE TABLE `" . DB_PREFIX, $sql);
                             $sql = str_replace("INSERT INTO `oc_", "INSERT INTO `" . DB_PREFIX, $sql);
+                            $sql = str_replace("UPDATE `oc_", "UPDATE `" . DB_PREFIX, $sql);
+                            $sql = str_replace("WHERE `oc_", "WHERE `" . DB_PREFIX, $sql);
                             $sql = str_replace("TRUNCATE TABLE `oc_", "TRUNCATE TABLE `" . DB_PREFIX, $sql);
+                            $sql = str_replace("ALTER TABLE `oc_", "ALTER TABLE `" . DB_PREFIX, $sql);
 
                             $this->db->query($sql);
 
