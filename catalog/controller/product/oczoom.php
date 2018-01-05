@@ -28,7 +28,7 @@ class ControllerProductOczoom extends Controller
             if($results) {
                 foreach ($results as $result) {
                     $data['images'][] = array(
-                        'src' => $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_width'))
+                        'src' => $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_height'))
                     );
                 }
 
