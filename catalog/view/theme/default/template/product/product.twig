@@ -22,10 +22,13 @@
                 <div class="{{ class }}">
                     {% if use_zoom %}
                         <input type="hidden" id="check-use-zoom" value="1" />
+                        <input type="hidden" id="light-box-position" value="1" />
+                        <input type="hidden" id="product-identify" value="{{ product_id }}" />
+                        <div class="lightbox-container"></div>
                         {% if use_swatches %}
                             <div class="product-zoom-image">
                                 {% if thumb %}
-                                    <a href="{{ popup }}" class="cloud-zoom" id="product-cloud-zoom" style="width: {{ thumb_dimension.width }}px; height: {{ thumb_dimension.height }}px;"
+                                    <a href="{{ popup }}" class="cloud-zoom main-image" id="product-cloud-zoom" style="width: {{ thumb_dimension.width }}px; height: {{ thumb_dimension.height }}px;"
                                        rel="{% if zoom_config.bg_status %} tint:'{{ zoom_config.bg_color }}',tintOpacity:{{ zoom_config.bg_opacity }},{% endif %}
                                             {% if zoom_config.title_status %} showTitle: true {% else %} showTitle: false {% endif %},
                                             zoomWidth:{{ thumb_dimension.width }},zoomHeight:{{ thumb_dimension.height }},
@@ -38,20 +41,22 @@
                             <div class="additional-images owl-carousel owl-theme">
                                 {% if thumb %}
                                     <div class="item">
-                                        <a class="cloud-zoom-gallery" id="product-image-default" href="{{ popup }}" title="{{ heading_title }}"
-                                           rel="useZoom: 'product-cloud-zoom', smallImage: '{{ thumb }}'">
+                                        <a class="cloud-zoom-gallery sub-image" id="product-image-default" href="{{ popup }}" title="{{ heading_title }}"
+                                           rel="useZoom: 'product-cloud-zoom', smallImage: '{{ thumb }}'" data-pos="1">
                                             <img src="{{ small_image }}" title="{{ heading_title }}" alt="{{ heading_title }}" />
                                         </a>
                                     </div>
                                 {% endif %}
                                 {% if images %}
+                                    {% set img_count = 2 %}
                                     {% for image in images %}
                                         <div class="item">
-                                            <a class="cloud-zoom-gallery" id="product-image-options-{{ image.product_option_value_id }}" href="{{ image.popup }}" title="{{ heading_title }}"
-                                               rel="useZoom: 'product-cloud-zoom', smallImage: '{{ image.product_image_option }}'">
+                                            <a class="cloud-zoom-gallery sub-image" id="product-image-options-{{ image.product_option_value_id }}" href="{{ image.popup }}" title="{{ heading_title }}"
+                                               rel="useZoom: 'product-cloud-zoom', smallImage: '{{ image.product_image_option }}'" data-pos="{{ img_count }}">
                                                 <img src="{{ image.thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" />
                                             </a>
                                         </div>
+                                        {% set img_count = img_count + 1 %}
                                     {% endfor %}
                                 {% endif %}
                             </div>
@@ -59,7 +64,7 @@
                         {% else %}
                             <div class="product-zoom-image">
                                 {% if thumb %}
-                                    <a href="{{ popup }}" class="cloud-zoom" id="product-cloud-zoom" style="width: {{ thumb_dimension.width }}px; height: {{ thumb_dimension.height }}px;"
+                                    <a href="{{ popup }}" class="cloud-zoom main-image" id="product-cloud-zoom" style="width: {{ thumb_dimension.width }}px; height: {{ thumb_dimension.height }}px;"
                                        rel="{% if zoom_config.bg_status %} tint:'{{ zoom_config.bg_color }}',tintOpacity:{{ zoom_config.bg_opacity }},{% endif %}
                                             {% if zoom_config.title_status %} showTitle: true {% else %} showTitle: false {% endif %},
                                             zoomWidth:{{ thumb_dimension.width }},zoomHeight:{{ thumb_dimension.height }},
@@ -72,20 +77,22 @@
                             <div class="additional-images owl-carousel owl-theme">
                                 {% if thumb %}
                                     <div class="item">
-                                        <a class="cloud-zoom-gallery" href="{{ popup }}" title="{{ heading_title }}"
-                                           rel="useZoom: 'product-cloud-zoom', smallImage: '{{ thumb }}'">
+                                        <a class="cloud-zoom-gallery sub-image" href="{{ popup }}" title="{{ heading_title }}"
+                                           rel="useZoom: 'product-cloud-zoom', smallImage: '{{ thumb }}'" data-pos="1">
                                             <img src="{{ small_image }}" title="{{ heading_title }}" alt="{{ heading_title }}" />
                                         </a>
                                     </div>
                                 {% endif %}
                                 {% if images %}
+                                    {% set img_count = 2 %}
                                     {% for image in images %}
                                         <div class="item">
-                                            <a class="cloud-zoom-gallery" href="{{ image.popup }}" title="{{ heading_title }}"
-                                               rel="useZoom: 'product-cloud-zoom', smallImage: '{{ image.product_image_option }}'">
+                                            <a class="cloud-zoom-gallery sub-image" href="{{ image.popup }}" title="{{ heading_title }}"
+                                               rel="useZoom: 'product-cloud-zoom', smallImage: '{{ image.product_image_option }}'" data-pos="{{ img_count }}">
                                                 <img src="{{ image.thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" />
                                             </a>
                                         </div>
+                                        {% set img_count = img_count + 1 %}
                                     {% endfor %}
                                 {% endif %}
                             </div>

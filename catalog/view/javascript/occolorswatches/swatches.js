@@ -19,6 +19,7 @@ var swatches = {
             }
 
             if(use_zoom == '1') {
+                $('#light-box-position').val('1');
                 $('#product-image-default').find('img').trigger('click');
             } else {
                 var thumb = $('#product-image-default').data('thumb');
@@ -39,7 +40,14 @@ var swatches = {
             }
 
             if(use_zoom == '1') {
-                $('#product-image-options-' + product_option_value).find('img').trigger('click');
+                var pos = $('#product-image-options-' + product_option_value).data('pos');
+                if(pos) {
+                    $('#light-box-position').val(pos);
+                    $('#product-image-options-' + product_option_value).find('img').trigger('click');
+                } else {
+                    $('#light-box-position').val('1');
+                    $('#product-image-default').find('img').trigger('click');
+                }
             } else {
                 var thumb = $('#product-image-options-' + product_option_value).data('thumb');
                 var popup = $('#product-image-options-' + product_option_value).data('popup');
