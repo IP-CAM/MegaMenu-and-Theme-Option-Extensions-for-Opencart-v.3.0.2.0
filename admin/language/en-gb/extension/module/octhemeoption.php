@@ -34,7 +34,7 @@ $_['tab_product']          = 'Product Page';
 $_['tab_category']         = 'Category Page';
 
 // Entry
-$_['entry_status']         = 'Enable Stylesheet Configuration';
+$_['entry_status']         = 'Stylesheet Configuration';
 $_['entry_store']          = 'Choose Store';
 $_['entry_rotator']        = 'Enable Rotator Image';
 $_['entry_quickview']      = 'Enable Quick View';

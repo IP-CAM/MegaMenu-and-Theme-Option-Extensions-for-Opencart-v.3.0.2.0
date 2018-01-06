@@ -279,6 +279,8 @@ class ControllerExtensionModuleOcthemeoption extends Controller
 
         $this->document->addScript('view/javascript/octhemeoption/jscolor.js');
         $this->document->addStyle('view/stylesheet/octhemeoption/themeoption.css');
+        $this->document->addScript('view/javascript/switch-toggle/js/bootstrap-toggle.min.js');
+        $this->document->addStyle('view/javascript/switch-toggle/css/bootstrap-toggle.min.css');
 
         $data['header'] = $this->load->controller('common/header');
         $data['column_left'] = $this->load->controller('common/column_left');

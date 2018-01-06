@@ -20,6 +20,8 @@
 .theme-option-container .btn-theme-option:hover { background-color: #b01927; border-color: #a11d4e; }
 .theme-option-container .notification {text-align: center;margin-top: 15px;font-size: 14px;}
 .theme-option-container .notification .fa-warning {color: #f27636;margin-right: 5px;}
+.theme-option-container .btn.toggle-on { background-color: #d21f27; border-color: #d21f27; }
+.theme-option-container .btn-primary { background-color: #d21f27; border-color: #d21f27; }
 .col-left {padding-right: 0;}
 .col-right {padding-left: 0;}
 .menu-sections li {width: 100%;}
