@@ -1,11 +1,11 @@
 <?php
 // Heading
-$_['heading_title']        = '<b><i>OC Theme Configuration</i></b>';
-$_['page_title']           = 'OC Theme Configuration';
+$_['heading_title']        = '<b><i>Theme Configuration</i></b>';
+$_['page_title']           = 'Theme Configuration';
 
 // Text
 $_['text_extension']       = 'Extensions';
-$_['text_edit']            = 'Edit OC Theme Configuration Module';
+$_['text_edit']            = 'Theme Control Panel';
 $_['text_success']         = 'Success: You have modified module OC Theme Configuration!';
 $_['text_import_success']  = 'Success: You have imported Theme Database!';
 $_['text_list']            = 'List View';
