@@ -12,6 +12,7 @@
     background-color: #FFFFFF;
     border: solid 2px #000000;
     display: none;
+    padding: 20px;
     z-index: 25;
     width: 92%;
     height: 86%;

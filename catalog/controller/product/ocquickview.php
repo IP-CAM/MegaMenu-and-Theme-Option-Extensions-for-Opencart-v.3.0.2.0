@@ -67,6 +67,11 @@ class ControllerProductOcquickview extends Controller
 
             $data['heading_title'] = $product_info['name'];
 
+            /* Zoom & Swatches */
+            $store_id = $this->config->get('config_store_id');
+            $use_swatches = (int) $this->config->get('module_octhemeoption_use_swatches')[$store_id];
+            $use_zoom = (int) $this->config->get('module_octhemeoption_use_zoom')[$store_id];
+
             $data['text_minimum'] = sprintf($this->language->get('text_minimum'), $product_info['minimum']);
             $data['text_login'] = sprintf($this->language->get('text_login'), $this->url->link('account/login', '', true), $this->url->link('account/register', '', true));
 
@@ -104,12 +109,79 @@ class ControllerProductOcquickview extends Controller
                 $data['thumb'] = '';
             }
 
+            if($use_swatches) {
+                $data['use_swatches'] = true;
+                $data['icon_swatches_width'] = $this->config->get('module_octhemeoption_swatches_width')[$store_id];
+                $data['icon_swatches_height'] = $this->config->get('module_octhemeoption_swatches_height')[$store_id];
+                $data['swatches_option'] = $this->config->get('module_octhemeoption_swatches_option')[$store_id];
+            } else {
+                $data['use_swatches'] = false;
+            }
+
+            if($use_zoom) {
+                $data['use_zoom'] = true;
+
+                if ($product_info['image']) {
+                    $data['small_image'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_height'));
+                } else {
+                    $data['small_image'] = '';
+                }
+
+                if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/oczoom/zoom.css')) {
+                    $this->document->addStyle('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/oczoom/zoom.css');
+                } else {
+                    $this->document->addStyle('catalog/view/theme/default/stylesheet/oczoom/zoom.css');
+                }
+
+                $data['popup_dimension'] = array(
+                    'width' => $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_width'),
+                    'height' => $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_height')
+                );
+
+                $data['thumb_dimension'] = array(
+                    'width' => $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_width'),
+                    'height' => $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_height')
+                );
+
+                $data['small_dimension'] = array(
+                    'width' => $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_width'),
+                    'height' => $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_height')
+                );
+
+                $bg_status = (int) $this->config->get('module_octhemeoption_zoom_background_status')[$store_id];
+                if($bg_status) {
+                    $zoom_bg_status = true;
+                } else {
+                    $zoom_bg_status = false;
+                }
+
+                $title_status = (int) $this->config->get('module_octhemeoption_zoom_title')[$store_id];
+                if($title_status) {
+                    $zoom_title_status = true;
+                } else {
+                    $zoom_title_status = false;
+                }
+
+                $data['zoom_config'] = array(
+                    'position' => $this->config->get('module_octhemeoption_zoom_position')[$store_id],
+                    'space' => $this->config->get('module_octhemeoption_zoom_space')[$store_id],
+                    'bg_status' => $zoom_bg_status,
+                    'bg_color' => '#' . $this->config->get('module_octhemeoption_zoom_background_color')[$store_id],
+                    'bg_opacity' => $this->config->get('module_octhemeoption_zoom_background_opacity')[$store_id],
+                    'title_status' => $zoom_title_status
+                );
+            } else {
+                $data['use_zoom'] = false;
+            }
+
             $data['images'] = array();
 
             $results = $this->model_catalog_product->getProductImages($product_id);
 
             foreach ($results as $result) {
                 $data['images'][] = array(
+                    'product_option_value_id' => $result['product_option_value_id'],
+                    'product_image_option' => $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_thumb_height')),
                     'popup' => $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_popup_height')),
                     'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_additional_height'))
                 );
@@ -237,6 +309,7 @@ class ControllerProductOcquickview extends Controller
     }
 
     public function container() {
+        $this->load->language('product/ocquickview');
         $data['ocquickview_loader_img'] = $this->config->get('config_url') . 'image/' . $this->config->get('module_octhemeoption_loader_img');
         $data['ocquickview_status'] = (int) $this->config->get('module_octhemeoption_quickview');
 

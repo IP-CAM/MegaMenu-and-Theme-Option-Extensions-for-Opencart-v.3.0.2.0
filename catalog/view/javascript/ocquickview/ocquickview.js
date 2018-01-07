@@ -10,7 +10,7 @@ var ocquickview = {
 	},
 
 	'appendCloseFrameLink' : function () {
-		$('div#quickview-content').prepend("<a href='javascript:void(0);' class='a-qv-close' onclick='ocquickview.closeQVFrame()'>Close</a>");
+		$('div#quickview-content').prepend("<a href='javascript:void(0);' class='a-qv-close' onclick='ocquickview.closeQVFrame()'>" + $('#qv-text-close').val() + "</a>");
 	},
 
 	'closeQVFrame' : function () {

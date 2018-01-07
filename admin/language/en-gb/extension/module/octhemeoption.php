@@ -36,9 +36,9 @@ $_['tab_category']         = 'Category Page';
 // Entry
 $_['entry_status']         = 'Stylesheet Configuration';
 $_['entry_store']          = 'Choose Store';
-$_['entry_rotator']        = 'Enable Rotator Image';
-$_['entry_quickview']      = 'Enable Quick View';
-$_['entry_catalog']        = 'Enable Catalog Mode';
+$_['entry_rotator']        = 'Rotate Image';
+$_['entry_quickview']      = 'Quick View';
+$_['entry_catalog']        = 'Catalog Mode';
 $_['entry_color']          = 'Color';
 $_['entry_width']          = 'Width';
 $_['entry_height']         = 'Height';
@@ -65,6 +65,7 @@ $_['entry_custom_view']    = 'Use Custom View';
 $_['entry_category_view']  = 'Default View';
 $_['entry_columns_grid']   = 'Default Grid Columns';
 $_['entry_use_layered']    = 'Use Layered Navigation';
+$_['entry_use_quickview']  = 'Use Quick View';
 $_['entry_product_image']  = 'Product Image Effect';
 
 //Error

@@ -247,6 +247,12 @@ class ControllerExtensionModuleOcthemeoption extends Controller
             $data['module_octhemeoption_layered_column'] = $this->config->get('module_octhemeoption_layered_column');
         }
 
+        if (isset($this->request->post['module_octhemeoption_use_cate_quickview'])) {
+            $data['module_octhemeoption_use_cate_quickview'] = $this->request->post['module_octhemeoption_use_cate_quickview'];
+        } else {
+            $data['module_octhemeoption_use_cate_quickview'] = $this->config->get('module_octhemeoption_use_cate_quickview');
+        }
+
         if (isset($this->request->post['module_octhemeoption_image_effect'])) {
             $data['module_octhemeoption_image_effect'] = $this->request->post['module_octhemeoption_image_effect'];
         } else {

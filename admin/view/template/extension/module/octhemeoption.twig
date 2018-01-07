@@ -431,6 +431,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
+                                                    <label class="col-sm-3 control-label" for="input-cquickview-{{ store.store_id }}">{{ entry_use_quickview }}</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="checkbox" class="ckb-switch" name="module_octhemeoption_use_cate_quickview[{{ store.store_id }}]" id="input-cquickview-{{ store.store_id }}"
+                                                               data-toggle="toggle" data-on="{{ text_enabled }}" data-off="{{ text_disabled }}" data-width="100" data-height="36" data-store-id="{{ store.store_id }}"
+                                                                {% if module_octhemeoption_use_cate_quickview[store.store_id] %} value="1" checked {% else %} value="0" {% endif %}>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
                                                     <label class="col-sm-3 control-label" for="input-product-image-{{ store.store_id }}">{{ entry_product_image }}</label>
                                                     <div class="col-sm-6">
                                                         <select name="module_octhemeoption_image_effect[{{ store.store_id }}]" id="input-product-image-{{ store.store_id }}" class="form-control">
