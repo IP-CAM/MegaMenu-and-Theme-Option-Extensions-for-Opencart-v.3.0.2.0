@@ -359,6 +359,12 @@ class ControllerProductOcfilter extends Controller
                 $data['use_layered'] = 0;
             }
 
+            if(isset($this->config->get('module_octhemeoption_use_cate_quickview')[$store_id])) {
+                $data['use_quickview'] = (int) $this->config->get('module_octhemeoption_use_cate_quickview')[$store_id];
+            } else {
+                $data['use_quickview'] = 0;
+            }
+
             if(isset($this->config->get('module_octhemeoption_image_effect')[$store_id])) {
                 $data['image_effect'] = $this->config->get('module_octhemeoption_image_effect')[$store_id];
             } else {
