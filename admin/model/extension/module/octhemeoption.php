@@ -9,6 +9,7 @@ class ModelExtensionModuleOcthemeoption extends Model
         $this->createSlideShowTable();
         $this->createTestimonialTable();
         $this->createColorSwatches();
+        $this->createMenuTable();
     }
 
     public function createBlogTable() {
@@ -154,6 +155,66 @@ class ModelExtensionModuleOcthemeoption extends Model
                 PRIMARY KEY (`testimonial_id`,`language_id`)
                 )
                 DEFAULT CHARSET=utf8;");
+    }
+
+    public function createMenuTable() {
+        $this->db->query("
+			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "megamenu` (
+			    `menu_id` INT(11) NOT NULL AUTO_INCREMENT,
+	            `status` TINYINT(1) NOT NULL DEFAULT '0',
+	            `name` VARCHAR(255) NOT NULL,
+	            `menu_type` VARCHAR(255) NOT NULL,
+	        PRIMARY KEY (`menu_id`)
+		) DEFAULT COLLATE=utf8_general_ci;");
+
+        $this->db->query("
+			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "megamenu_top_item` (
+			    `menu_item_id` INT(11) NOT NULL AUTO_INCREMENT,
+			    `menu_id` INT(11) NOT NULL,
+	            `status` TINYINT(1) NOT NULL DEFAULT '0',
+	            `has_title` TINYINT(1) NOT NULL DEFAULT '0',
+	            `has_link` TINYINT(1) NOT NULL DEFAULT '0',
+	            `has_child` TINYINT(1) NOT NULL DEFAULT '0',
+                `category_id` INT(11),
+                `position` INT(11) NOT NULL DEFAULT '0',
+	            `name` VARCHAR(255) NOT NULL,
+	            `link` VARCHAR(255),
+	            `icon` VARCHAR(255),
+	            `item_align` VARCHAR(255) NOT NULL,
+	            `sub_menu_type` VARCHAR(255) NOT NULL,
+	            `sub_menu_content_type` VARCHAR(255) NOT NULL,
+	            `sub_menu_content_columns` INT(11),
+	            `sub_menu_content` text,
+	        PRIMARY KEY (`menu_item_id`)
+		) DEFAULT COLLATE=utf8_general_ci;");
+
+        $this->db->query("
+			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "megamenu_top_item_description` (
+			    `menu_item_id` INT(11) NOT NULL,
+			    `language_id` int(11) NOT NULL,
+	            `title` VARCHAR(255) NOT NULL,
+	            PRIMARY KEY (`menu_item_id`,`language_id`)
+		) DEFAULT COLLATE=utf8_general_ci;");
+
+        $this->db->query("
+			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "megamenu_sub_item` (
+			    `sub_menu_item_id` INT(11) NOT NULL AUTO_INCREMENT,
+			    `parent_menu_item_id` INT(11) NOT NULL,
+			    `level` INT(11) NOT NULL,
+	            `status` TINYINT(1) NOT NULL DEFAULT '0',
+	            `name` VARCHAR(255) NOT NULL,
+	            `position` INT(11) NOT NULL,
+	            `link` VARCHAR(255),
+	        PRIMARY KEY (`sub_menu_item_id`)
+		) DEFAULT COLLATE=utf8_general_ci;");
+
+        $this->db->query("
+			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "megamenu_sub_item_description` (
+			    `sub_menu_item_id` INT(11) NOT NULL,
+			    `language_id` int(11) NOT NULL,
+	            `title` VARCHAR(255) NOT NULL,
+	            PRIMARY KEY (`sub_menu_item_id`,`language_id`)
+		) DEFAULT COLLATE=utf8_general_ci;");
     }
 
     public function createCategoryThumbnailTable() {
