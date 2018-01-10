@@ -32,8 +32,7 @@
                                        rel="{% if zoom_config.bg_status %} tint:'{{ zoom_config.bg_color }}',tintOpacity:{{ zoom_config.bg_opacity }},{% endif %}
                                             {% if zoom_config.title_status %} showTitle: true {% else %} showTitle: false {% endif %},
                                             zoomWidth:{{ thumb_dimension.width }},zoomHeight:{{ thumb_dimension.height }},
-                                            adjustX: {{ zoom_config.space }},
-                                            {% if zoom_config.position == 'inside' %} position:'inside' {% endif %}">
+                                            {% if zoom_config.position == 'inside' %} position:'inside', adjustX: 0 {% else %} adjustX: {{ zoom_config.space }} {% endif %}">
                                         <img src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" />
                                     </a>
                                 {% endif %}
