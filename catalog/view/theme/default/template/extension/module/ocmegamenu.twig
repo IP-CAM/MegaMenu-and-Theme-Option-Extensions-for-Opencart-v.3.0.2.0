@@ -133,7 +133,9 @@
                                                     {% endfor %}
                                                 {% endif %}
                                             </div>
-                                        {% else %}
+                                        {% endif %}
+
+                                        {% if top_item.sub_menu_content_type == 'category' %}
                                             {% if top_item.sub_menu_content|length > 0 %}
                                                 <div class="mega-menu-container sub-menu-container {{ top_item.item_align }} {% if menu_setting.mega_menu_width == '100%' %} full-width {% endif %}">
                                                     {% for type,widgets in top_item.sub_menu_content %}
@@ -156,7 +158,15 @@
                                                                 {% endfor %}
                                                             {% endif %}
                                                         {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
 
+                                        {% if top_item.sub_menu_content_type == 'widget' %}
+                                            {% if top_item.sub_menu_content|length > 0 %}
+                                                <div class="mega-menu-container sub-menu-container {{ top_item.item_align }} {% if menu_setting.mega_menu_width == '100%' %} full-width {% endif %}">
+                                                    {% for type,widgets in top_item.sub_menu_content %}
                                                         {% if type == "widget" %}
                                                             {% if widgets|length > 0 %}
                                                                 {% for widget in widgets %}

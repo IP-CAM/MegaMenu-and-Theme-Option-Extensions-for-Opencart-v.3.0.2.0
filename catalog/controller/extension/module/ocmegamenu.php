@@ -163,8 +163,6 @@ class ControllerExtensionModuleOcmegamenu extends Controller
 
                     if($sub_content) {
                         foreach ($sub_content as $sub_type => $widgets) {
-                            $category_widgets = array();
-
                             if($sub_type == "category") {
                                 if($top_item_status) {
                                     if($widgets) {
@@ -201,7 +199,7 @@ class ControllerExtensionModuleOcmegamenu extends Controller
                                                     }
                                                 }
 
-                                                $category_widgets[] = array(
+                                                $sub_menu_content['category'][] = array(
                                                     'id'        => $category_id,
                                                     'title'     => $title,
                                                     'link'      => $link,
@@ -214,8 +212,6 @@ class ControllerExtensionModuleOcmegamenu extends Controller
                                     }
                                 }
                             }
-
-                            $widget_widgets = array();
 
                             if($sub_type == "widget") {
                                 if($top_item_status) {
@@ -253,7 +249,7 @@ class ControllerExtensionModuleOcmegamenu extends Controller
                                                         }
                                                     }
 
-                                                    $widget_widgets[] = array(
+                                                    $sub_menu_content['widget'][] = array(
                                                         'type'      => $widget['type'],
                                                         'title'     => $title,
                                                         'link'      => $link,
@@ -283,7 +279,7 @@ class ControllerExtensionModuleOcmegamenu extends Controller
                                                     $html_content = '';
                                                 }
 
-                                                $widget_widgets[] = array(
+                                                $sub_menu_content['widget'][] = array(
                                                     'type'      => $widget['type'],
                                                     'title'     => $title,
                                                     'cols'      => $w_cols,
@@ -309,7 +305,7 @@ class ControllerExtensionModuleOcmegamenu extends Controller
 
                                                     $link = $this->url->link('product/product', '&product_id=' . $product_id);
 
-                                                    $widget_widgets[] = array(
+                                                    $sub_menu_content['widget'][] = array(
                                                         'type'      => $widget['type'],
                                                         'title'     => $title,
                                                         'link'      => $link,
@@ -326,7 +322,7 @@ class ControllerExtensionModuleOcmegamenu extends Controller
                                                     $title = "Widget Link";
                                                 }
 
-                                                $widget_widgets[] = array(
+                                                $sub_menu_content['widget'][] = array(
                                                     'type'      => $widget['type'],
                                                     'title'     => $title,
                                                     'cols'      => $widget['cols'],
@@ -337,9 +333,6 @@ class ControllerExtensionModuleOcmegamenu extends Controller
                                     }
                                 }
                             }
-
-                            $sub_menu_content['category'] = $category_widgets;
-                            $sub_menu_content['widget'] = $widget_widgets;
                         }
                     }
 
